@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{68512F5A-598B-49E2-9E98-4F9367EA2844}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{AFCCAEEB-9BC6-400F-958C-F6EE354B47F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{6F9806B4-5E6D-4480-BA9F-6B2D31A0E5EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astec.Service", "Astec.Service\Astec.Service.csproj", "{448AAC3E-D913-4FA5-A019-8E16B153164E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astec.Model", "Astec.Model\Astec.Model.csproj", "{92AD9200-180C-4D21-BB29-12F16FAAD30A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astec.Data", "Astec.Data\Astec.Data.csproj", "{A462B8D0-047E-499D-8CB2-FF837809FE27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astec.Common", "Astec.Common\Astec.Common.csproj", "{F54BC014-8F64-4AF2-9466-F988DC0EA3D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{448AAC3E-D913-4FA5-A019-8E16B153164E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{448AAC3E-D913-4FA5-A019-8E16B153164E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{448AAC3E-D913-4FA5-A019-8E16B153164E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{448AAC3E-D913-4FA5-A019-8E16B153164E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92AD9200-180C-4D21-BB29-12F16FAAD30A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92AD9200-180C-4D21-BB29-12F16FAAD30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92AD9200-180C-4D21-BB29-12F16FAAD30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92AD9200-180C-4D21-BB29-12F16FAAD30A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A462B8D0-047E-499D-8CB2-FF837809FE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A462B8D0-047E-499D-8CB2-FF837809FE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A462B8D0-047E-499D-8CB2-FF837809FE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A462B8D0-047E-499D-8CB2-FF837809FE27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F54BC014-8F64-4AF2-9466-F988DC0EA3D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F54BC014-8F64-4AF2-9466-F988DC0EA3D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F54BC014-8F64-4AF2-9466-F988DC0EA3D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F54BC014-8F64-4AF2-9466-F988DC0EA3D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{448AAC3E-D913-4FA5-A019-8E16B153164E} = {68512F5A-598B-49E2-9E98-4F9367EA2844}
+		{92AD9200-180C-4D21-BB29-12F16FAAD30A} = {AFCCAEEB-9BC6-400F-958C-F6EE354B47F6}
+		{A462B8D0-047E-499D-8CB2-FF837809FE27} = {AFCCAEEB-9BC6-400F-958C-F6EE354B47F6}
+		{F54BC014-8F64-4AF2-9466-F988DC0EA3D5} = {6F9806B4-5E6D-4480-BA9F-6B2D31A0E5EF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2238107-D950-42FE-A4DE-23CD56C2D399}
+	EndGlobalSection
+EndGlobal
