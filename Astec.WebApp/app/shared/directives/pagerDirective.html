@@ -1,0 +1,12 @@
+﻿<div ng-disabled="(!pagesCount || pagesCount < 2)" style="display:inline">
+    <ul class="pagination pagination-sm">
+        <li><a ng-disabled="page == 0" ng-click="search(0)">Đầu</a></li>
+        <li><a ng-disabled="page == 0" ng-click="search(page-1)">Trước</a></li>
+        <li ng-repeat="n in range()" ng-class="{active: n == page}">
+            <a ng-click="search(n)" ng-if="n != page">{{n+1}}</a>
+            <span ng-if="n == page">{{n+1}}</span>
+        </li>
+        <li><a ng-disabled="page == pagesCount - 1" ng-click="search(pagePlus(1))">Sau</a></li>
+        <li><a ng-disabled="page == pagesCount - 1" ng-click="search(pagesCount - 1)">Cuối</a></li>
+    </ul>
+</div>

@@ -1,0 +1,37 @@
+﻿
+<section class="card-header">
+    <h1> Danh sách quyền</h1>
+    <ul class="breadcrumb">
+        <li><a href="#!/home"> <i class="fa fa-home"></i> Trang chủ </a></li>
+        <li style="margin-left:5px;"><a ui-sref="application_roles"> > Danh sách quyền</a></li>
+        <li class="active" style="margin-left:5px;"><a href="javascript:void(0)"> > Chỉnh sửa</a></li>
+    </ul>
+</section>
+<div class="card" style="min-height: 484px;">
+    <div class="card-header"><h3>Chỉnh sửa quyền</h3></div>
+    <div class="card-body">
+        <form class="forms-sample" novalidate name="frmUpdateAppRole" role="form" ng-submit="updateApplicationRole()">
+            <div class="form-group row">
+                <label for="Name" class="col-sm-3 col-form-label" ng-class="{ 'has-error' : frmUpdateAppRole.name.$invalid && !frmUpdateAppRole.name.$pristine }">Tên quyền</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Name" required ng-maxlength="50" name="Name" placeholder="Nhập tên quyền" ng-model="role.Name">
+                    <span ng-show="frmUpdateAppRole.Name.$invalid" class="has-error">Tên quyền không được để trống</span>
+                    <span ng-show="frmUpdateAppRole.Name.$error.maxlength" class="has-error">Tên quyền chỉ được 50 ký tự</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Description" class="col-sm-3 col-form-label">Mô tả</label>
+                <div class="col-sm-9">
+                    <textarea type="text" class="form-control" id="Description" name="Description" placeholder="Nhập mô tả" ng-model="role.Description"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label"></div>
+                <div class="col-sm-9">
+                    <button type="submit" ng-disabled="frmUpdateAppRole.Name.$invalid" class="btn btn-primary mr-2"><i class="fa fa-save"></i> Lưu</button>
+                    <button class="btn btn-light" ui-sref="application_roles"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

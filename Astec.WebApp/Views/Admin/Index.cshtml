@@ -1,0 +1,132 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Astec - Admin Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Assets/admin/plugins/bootstrap/dist/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="../Assets/admin/plugins/icon-kit/dist/css/iconkit.min.css">
+    <link rel="stylesheet" href="../Assets/admin/plugins/ionicons/dist/css/ionicons.min.css">
+    <link rel="stylesheet" href="../Assets/admin/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../Assets/admin/plugins/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="../Assets/admin/plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="../Assets/admin/plugins/weather-icons/css/weather-icons.min.css">
+    <link href="../node_modules/angular-loading-bar/src/loading-bar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../Assets/admin/plugins/c3/c3.min.css">
+    <link rel="stylesheet" href="../Assets/admin/plugins/owl.carousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="../Assets/admin/plugins/owl.carousel/dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../Assets/admin/dist/css/theme.min.css">
+    <link href="../node_modules/toastr/build/toastr.css" rel="stylesheet" />
+    <link href="../Assets/admin/css/style-admin.css" rel="stylesheet" />
+
+    <link href="~/Assets/admin/fonts/fontawesome-free-5.11.2-web/css/all.css" rel="stylesheet" />
+
+    <!--login-->
+    
+    <!--end login-->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.css" rel="stylesheet" />
+    <script src="~/node_modules/jquery/dist/jquery.js"></script>
+
+
+</head>
+
+
+<body ng-app="astec" ng-controller="rootController">
+    <div class="wrapper" ui-view>
+
+    </div>
+    <!--Angular-->
+    <script src="~/node_modules/angular/angular.js"></script>
+    <script src="~/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="~/node_modules/toastr/toastr.js"></script>
+    <script src="~/node_modules/bootbox/bootbox.js"></script>
+    <script src="~/node_modules/ngbootbox/ngBootbox.js"></script>
+    <script src="~/node_modules/angular-loading-bar/src/loading-bar.js"></script>
+    <script src="~/node_modules/angular-local-storage/src/angular-local-storage.js"></script>
+    <script src="~/node_modules/moment/moment.js"></script>
+    <script src="~/node_modules/bootstrap-ui/dist/js/bootstrap-ui.js"></script>
+    <script src="~/node_modules/checklist-model/checklist-model.js"></script>
+    <!--app-->
+    <script src="~/app/shared/modules/astec.common.js"></script>
+    <script src="~/app/shared/filters/statusFilter.js"></script>
+    <script src="~/app/shared/services/apiService.js"></script>
+    <script src="~/app/shared/directives/pagerDirective.js"></script>
+    <script src="~/app/shared/services/notificationService.js"></script>
+    <script src="~/app/shared/services/authData.js"></script>
+    <script src="~/app/shared/services/authenticationService.js"></script>
+    <script src="~/app/shared/services/loginService.js"></script>
+    <script src="~/app/shared/services/commonService.js"></script>
+    <script src="~/app/components/apartments/apartments.module.js"></script>
+    <script src="~/app/app.js"></script>
+    <script src="~/app/components/home/rootController.js"></script>
+    <script src="~/app/components/apartments/apartmentListController.js"></script>
+    <script src="~/app/components/login/loginController.js"></script>
+    <script src="~/app/components/apartments/apartmentAddController.js"></script>
+    <script src="~/app/components/apartments/apartmentEditController.js"></script>
+    <script src="~/app/components/home/homeController.js"></script>
+
+    <script src="~/app/components/modules/applicationModules.module.js"></script>
+    <script src="~/app/components/modules/applicationModuleListController.js"></script>
+    <script src="~/app/components/modules/applicationModuleAddController.js"></script>
+    <script src="~/app/components/modules/applicationModuleEditController.js"></script>
+
+    <!--Role-->
+    <script src="~/app/components/application_groups/applicationGroups.module.js"></script>
+    <script src="~/app/components/application_groups/applicationGroupListController.js"></script>
+    <script src="~/app/components/application_groups/applicationGroupAddController.js"></script>
+    <script src="~/app/components/application_groups/applicationGroupEditController.js"></script>
+
+    <script src="~/app/components/application_roles/applicationRoles.module.js"></script>
+    <script src="~/app/components/application_roles/applicationRoleListController.js"></script>
+    <script src="~/app/components/application_roles/applicationRoleAddController.js"></script>
+    <script src="~/app/components/application_roles/applicationRoleEditController.js"></script>
+
+    <script src="~/app/components/application_users/applicationUsers.module.js"></script>
+    <script src="~/app/components/application_users/applicationUserListController.js"></script>
+    <script src="~/app/components/application_users/applicationUserEditController.js"></script>
+    <script src="~/app/components/application_users/applicationUserAddController.js"></script>
+
+    <!--end Role-->
+    <!--end app-->
+    <!--End Angular-->
+    <!--login-->
+    <script src="../Assets/admin/css/select2/select2.js"></script>
+    <!--end login-->
+    <script src="~/Assets/admin/src/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="~/Assets/admin/plugins/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Assets/admin/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="~/Assets/admin/plugins/screenfull/dist/screenfull.js"></script>
+    <script src="~/Assets/admin/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/admin/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Assets/admin/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Assets/admin/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Assets/admin/plugins/moment/moment.js"></script>
+    <script src="~/Assets/admin/plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="~/Assets/admin/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="~/Assets/admin/plugins/d3/dist/d3.min.js"></script>
+    <script src="~/Assets/admin/plugins/c3/c3.min.js"></script>
+    <script src="~/Assets/admin/js/tables.js"></script>
+
+    @*<script src="./Assets/admin/dist/js/theme.min.js"></script>*@
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+
+</body>
+</html>

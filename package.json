@@ -1,0 +1,22 @@
+{
+  "name": "astecweb",
+  "version": "1.0.0",
+  "description": "test api\r Email: Haolv@astec.vn",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Haokaka96/AstecWeb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Haokaka96/AstecWeb/issues"
+  },
+  "homepage": "https://github.com/Haokaka96/AstecWeb#readme",
+  "dependencies": {
+    "angular": "^1.7.8"
+  }
+}
