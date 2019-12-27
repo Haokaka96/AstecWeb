@@ -27,6 +27,8 @@ namespace Astec.Data
         public DbSet<ResidentImage> ResidentImages { get; set; }
         public DbSet<FingerPrint> FingerPrints { get; set; }
         public DbSet<ApplicationModule> ApplicationModules { get; set; }
+        public DbSet<test1> test1 { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         public static AstecDbContext Create()
         {

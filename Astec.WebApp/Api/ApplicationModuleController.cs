@@ -14,7 +14,7 @@ using System.Web.Http;
 namespace Astec.WebApp.Api
 {
     [RoutePrefix("api/module")]
-    [Authorize]
+    //[Authorize]
     public class ApplicationModuleController : ApiControllerBase
     {
         private IApplicationModuleService _moduleService;
@@ -34,6 +34,21 @@ namespace Astec.WebApp.Api
                 var listModule = _moduleService.GetAll();
                 var responseData = Mapper.Map<IEnumerable<ApplicationModule>, IEnumerable<ApplicationModuleViewModel>>(listModule);
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
+        [Route("getallparents")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _moduleService.GetAll();
+
+                var responseData = Mapper.Map<IEnumerable<ApplicationModule>, IEnumerable<ApplicationModuleViewModel>>(model);
+
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
             });
         }

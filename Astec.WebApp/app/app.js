@@ -1,7 +1,7 @@
 ﻿/// <reference path="../node_modules/angular/angular.js" />
 
 (function () {
-    angular.module('astec', ['astec.apartments',
+    angular.module('astec', ['astec.apartments','astec.employees',
         'astec.application_groups', 'astec.application_roles', 'astec.application_users','astec.application_modules',
         'astec.common'])
         .config(config).config(configAuthentication);
@@ -23,6 +23,11 @@
             parent: 'base',
             templateUrl: "/app/components/home/homeView.html",
             controller: "homeController"
+        }).state('sider_bar', {
+            url: "/sider_bar",
+            parent: 'base',
+            templateUrl: "/app/components/sider_bars/siderbar.html",
+            controller: "myController"
         });
         
     }

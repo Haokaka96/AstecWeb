@@ -23,6 +23,17 @@
                     <input type="text" class="form-control" id="Url" name="Url" placeholder="Nhập Url" ng-model="appModule.Url">
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 control-label">Danh mục cha</label>
+                <div class="col-sm-10">
+                    <select name="parentId" class="form-control" ng-model="appModule.parentId" ng-options="option.Id as option.Name for option in flatFolders">
+                        <option value="">Danh mục gốc</option>
+                    </select>
+                    <input type="hidden" name="parentId" ng-model="appModule.ParentId" />
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label for="ParentId" class="col-sm-3 col-form-label">ParentId</label>
                 <div class="col-sm-9">

@@ -87,6 +87,7 @@
     <Compile Include="Models\ApplicationUserGroup.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\District.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\Ethnic.cs" />
@@ -96,6 +97,8 @@
     <Compile Include="Models\Resident.cs" />
     <Compile Include="Models\Street.cs" />
     <Compile Include="Models\SystemConfig.cs" />
+    <Compile Include="Models\test2.cs" />
+    <Compile Include="Models\test1.cs" />
     <Compile Include="Models\Wards.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

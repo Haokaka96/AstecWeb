@@ -20,5 +20,6 @@ namespace Astec.Model.Models
         [StringLength(256)]
         public string Url { get; set; }
         public int  ParentId { get; set; }
+        public virtual IEnumerable<ApplicationModule> Children{ get; set; }
     }
 }

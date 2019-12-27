@@ -1,0 +1,34 @@
+﻿<div class="sidebar-content" ng-app="myApp">
+    <div class="nav-container" ng-controller="myController">
+        <nav id="main-menu-navigation" class="navigation-main">
+            <div class="nav-lavel">Phần quản trị</div>
+            <div class="nav-item has-sub">
+                <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Quản lý</span></a>
+                <div class="submenu-content">
+                    <a ui-sref="apartments" class="menu-item">Căn hộ</a>
+                    <a ui-sref="home" class="menu-item">Test</a>
+                    <a ui-sref="sider_bar" class="menu-item">Test menu</a>
+                </div>
+            </div>
+            <div class="nav-lavel">Phần hệ thống</div>
+            <div class="nav-item has-sub">
+                <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Phân quyền</span></a>
+                <div class="submenu-content">
+                    <a ui-sref="application_groups" class="menu-item">Nhóm</a>
+                    <a ui-sref="application_roles" class="menu-item">Quyền</a>
+                    <a ui-sref="application_users" class="menu-item">Người dùng</a>
+                    <a ui-sref="application_modules" class="menu-item">Module</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Danh mục cha</label>
+                <div class="col-sm-10">
+                    <select name="parentId" class="form-control" ng-model="appModule.ParentId" ng-options="option.ID as option.Name for option in flatFolders">
+                        <option value="">Danh mục gốc</option>
+                    </select>
+                    <input type="hidden" name="parentId" ng-model="appModule.ParentId" />
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

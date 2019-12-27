@@ -1,0 +1,79 @@
+﻿
+<section class="card-header">
+    <h1> Danh sách nhân viên</h1>
+    <ul class="breadcrumb">
+        <li><a href="#!/home"> <i class="fa fa-home"></i> Trang chủ </a></li>
+        <li style="margin-left:5px;"><a ui-sref="employees"> > Nhân viên</a></li>
+        <li class="active" style="margin-left:5px;"><a href="javascript:void(0)"> > Thêm mới</a></li>
+    </ul>
+</section>
+<div class="card" style="min-height: 484px;">
+    <div class="card-header"><h3>Thêm mới nhân viên</h3></div>
+    <div class="card-body">
+        <form class="forms-sample" novalidate name="frmAddEmployee" role="form" ng-submit="addEmployee()">
+            <div class="form-group row" ng-class="{ 'has-error' : frmAddEmployee.Name.$invalid && !frmAddEmployee.Name.$pristine }">
+                <label for="Name" class="col-sm-3 col-form-label">Tên nhân viên</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Name" required ng-maxlength="50" name="Name" placeholder="Nhập tên nhân viên" ng-model="employee.Name">
+                    <span ng-show="frmAddEmployee.Name.$touched && frmAddEmployee.Name.$invalid" ng-class="{ 'has-error' : frmAddEmployee.Name.$invalid && !frmAddEmployee.Name.$pristine }">Tên nhân viên không được để trống.</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="DateOfBirth" class="col-sm-3 col-form-label">Ngày sinh</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" id="DateOfBirth" required reqired-message="Ngày sinh không được để trống." name="DateOfBirth" ng-model="employee.DateOfBirth">
+                </div>
+            </div>
+            <div class="row form-group">
+                <label for="Gender" class="col-form-label col-sm-3 ">Giới tính </label>
+                <div class="col-sm-4">
+                    <select class="form-control" ng-model="employee.Gender">
+                        <option value="">--Chọn giới tính--</option>
+                        <option value="1" ng-value="1">Nam</option>
+                        <option value="0" ng-value="0">Nữ</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Phone" class="col-sm-3 col-form-label">Số điện thoại</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Phone" name="Phone" ng-model="employee.Phone">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Image1" class="col-sm-3 col-form-label">Ảnh</label>
+                <div class="col-sm-9">
+                    <input type="text" id="Image" class="form-control" ng-model="employee.ImageName" />
+                    <button type="button" class=" btn btn-default" ng-click="chooseImage()">Chọn ảnh</button>
+                    <div class="col-sm-12">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-4"><img src="{{employee.ImageName}}" class="image-view" alt="" /></div>                      
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Address" class="col-sm-3 col-form-label">Địa chỉ</label>
+                <div class="col-sm-9">
+                    <textarea cols="3" class="form-control" id="Address" name="Address" placeholder="Nhập địa chỉ" ng-model="employee.Address"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="exampleInputMobile" class="col-sm-3 col-form-label">Trạng thái</label>
+                <div class="col-sm-9">
+                    <label class="custom-control custom-checkbox form-group">
+                        <input type="checkbox" class="custom-control-input" ng-checked="employee.Status" ng-model="employee.Status">
+                        <span class="custom-control-label">&nbsp;Kích hoạt</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label"></div>
+                <div class="col-sm-9">
+                    <button type="submit" ng-disabled="frmAddEmployee.$invalid" class="btn btn-primary mr-2"><i class="fa fa-save"></i> Lưu</button>
+                    <button class="btn btn-light" ui-sref="employees"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

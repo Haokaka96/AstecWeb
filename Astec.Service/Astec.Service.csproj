@@ -58,6 +58,7 @@
     <Compile Include="ApplicationGroupService.cs" />
     <Compile Include="ApplicationModuleService.cs" />
     <Compile Include="ApplicationRoleService.cs" />
+    <Compile Include="EmployeeService.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

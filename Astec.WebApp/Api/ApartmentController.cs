@@ -78,26 +78,6 @@ namespace Astec.WebApp.Api
                 return response;
             });
         }
-        [Route("getbyname/{filter}/{value}")]
-        public List<Apartment> GetOrdersByCustName(string filter, string value)
-        {
-            AstecDbContext ctx = new AstecDbContext();
-            List<Apartment> Res = new List<Apartment>();
-            switch (filter)
-            {
-                case "ApartmentName":
-                    Res = (from c in ctx.Apartments
-                           where c.ApartmentName.StartsWith(value)
-                           select c).ToList();
-                    break;
-                case "Desciption":
-                    Res = (from c in ctx.Apartments
-                           where c.Description.StartsWith(value)
-                           select c).ToList();
-                    break;
-            }
-            return Res;
-        }
 
         // Get theo kiểu không dùng repository
         //[Route("getall1")]

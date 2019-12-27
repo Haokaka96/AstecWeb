@@ -47,7 +47,7 @@
             <div class="form-group row" ng-class="{ 'has-error' : frmUpdateAccount.BirthDate.$invalid && !frmUpdateAccount.BirthDate.$pristine }">
                 <label class="col-sm-3 col-form-label" for="BirthDay">Ngày sinh</label>
                 <div class="col-sm-9">
-                    <input type="date" name="BirthDate"  class="form-control"
+                    <input type="date" name="BirthDate"  value="{{ account.BirthDate | date: 'yyyy-MM-dd' }}" class="form-control"
                            required reqired-message="Ngày sinh bắt buộc." ng-model="account.BirthDate">
                 </div>
             </div>

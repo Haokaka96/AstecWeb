@@ -76,6 +76,22 @@
     <Compile Include="Migrations\201912210331085_appModule.Designer.cs">
       <DependentUpon>201912210331085_appModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912230621327_m1.cs" />
+    <Compile Include="Migrations\201912230621327_m1.Designer.cs">
+      <DependentUpon>201912230621327_m1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912230732203_m2.cs" />
+    <Compile Include="Migrations\201912230732203_m2.Designer.cs">
+      <DependentUpon>201912230732203_m2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912240832019_addemployee.cs" />
+    <Compile Include="Migrations\201912240832019_addemployee.Designer.cs">
+      <DependentUpon>201912240832019_addemployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912240930274_addemployee1.cs" />
+    <Compile Include="Migrations\201912240930274_addemployee1.Designer.cs">
+      <DependentUpon>201912240930274_addemployee1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApartmentRepository.cs" />
@@ -85,6 +101,7 @@
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
     <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
     <Compile Include="Repositories\DistrictRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\ResidentRepository.cs" />
     <Compile Include="Repositories\StreetRepository.cs" />
@@ -109,6 +126,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912210331085_appModule.resx">
       <DependentUpon>201912210331085_appModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912230621327_m1.resx">
+      <DependentUpon>201912230621327_m1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912230732203_m2.resx">
+      <DependentUpon>201912230732203_m2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912240832019_addemployee.resx">
+      <DependentUpon>201912240832019_addemployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912240930274_addemployee1.resx">
+      <DependentUpon>201912240930274_addemployee1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

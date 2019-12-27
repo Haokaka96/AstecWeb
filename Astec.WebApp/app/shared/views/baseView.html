@@ -1,4 +1,4 @@
-﻿<script src="../../../Assets/admin/dist/js/theme.js"></script>
+﻿<script src="~/Assets/admin/dist/js/theme.js"></script>
 <header class="header-top" header-theme="light">
     <div class="container-fluid">
         <div class="d-flex justify-content-between">
@@ -88,7 +88,7 @@
 <div class="page-wrap">
     <div class="app-sidebar colored">
         <div class="sidebar-header">
-            <a class="header-brand" href="#">
+            <a class="header-brand" ui-sref="home">
                 <div class="logo-img">
                     <img src="../../../Assets/admin/src/img/brand-white.svg" class="header-brand-img" alt="lavalite">
                 </div>
@@ -106,7 +106,9 @@
                         <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Quản lý</span></a>
                         <div class="submenu-content">
                             <a ui-sref="apartments" class="menu-item">Căn hộ</a>
+                            <a ui-sref="employees" class="menu-item">Nhân viên</a>
                             <a ui-sref="home" class="menu-item">Test</a>
+                            <a ui-sref="sider_bar" class="menu-item">Test menu</a>
                         </div>
                     </div>
                     <div class="nav-lavel">Phần hệ thống</div>
@@ -144,7 +146,7 @@
         </div>
     </aside>-->
 
-    <div class="chat-panel" hidden>
+    <<!--div class="chat-panel" hidden>
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <a href="javascript:void(0);"><i class="ik ik-message-square text-success"></i></a>
@@ -225,7 +227,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div>-->
     <!--Footer-->
     <footer class="footer">
         <div class="w-100 clearfix">

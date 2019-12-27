@@ -5,7 +5,7 @@
         <li class="active" style="margin-left:5px;"><a href="javascript:void(0)"> > Căn hộ</a></li>
     </ul>
 </section>
-<section class="card-content" ng-controller="apartmentListController">
+<section class="card-content">
     <div class="row clearfix">
         <div class="box">
             <div class="card-body">
@@ -42,7 +42,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in apartments">
+                            <tr ng-repeat="item in apartments | filter: keyword">
                                 <td style="text-align:center">{{item.ApartmentID}}</td>
                                 <td style="width:45%">{{item.ApartmentName}}</td>
                                 <td>{{item.CreatedDate|date:'dd-MM-yyyy'}}</td>

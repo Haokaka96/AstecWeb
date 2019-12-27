@@ -59,5 +59,25 @@ namespace Astec.WebApp.Infrastructure.Extentions
             appModule.Url = appModuleViewModel.Url;
             appModule.ParentId = appModuleViewModel.ParentId;
         }
+
+        public static void UpdateEmployee(this Employee employee, EmployeeViewModel employeeViewModel, string action = "add")
+        {
+
+            employee.Id = employeeViewModel.Id;
+            employee.Name = employeeViewModel.Name;
+            employee.DateOfBirth = employeeViewModel.DateOfBirth;
+            employee.Gender = employeeViewModel.Gender;
+            employee.Phone = employeeViewModel.Phone;
+            employee.Address = employeeViewModel.Address;
+            employee.ImageName = employeeViewModel.ImageName;
+            employee.Image = employeeViewModel.Image;
+            employee.CreatedDate = employeeViewModel.CreatedDate;
+            employee.CreatedBy = employeeViewModel.CreatedBy;
+            employee.UpdatedDate = employeeViewModel.UpdatedDate;
+            employee.UpdatedBy = employeeViewModel.UpdatedBy;
+            employee.MetaKeyword = employeeViewModel.MetaKeyword;
+            employee.MetaDescription = employeeViewModel.MetaDescription;
+            employee.Status = employeeViewModel.Status;
+        }
     }
 }

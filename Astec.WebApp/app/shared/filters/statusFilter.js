@@ -5,7 +5,7 @@
             if (input == true)
                 return 'Kích hoạt';
             else
-                return 'Khóa'
+                return 'Khóa';
         }
     });
 })(angular.module('astec.common'));

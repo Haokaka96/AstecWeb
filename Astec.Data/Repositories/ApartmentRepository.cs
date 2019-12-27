@@ -7,7 +7,7 @@ namespace Astec.Data.Repositories
 {
     public interface IApartmentRepository : IRepository<Apartment>
     {
-        IEnumerable<Apartment> GetListApartment(int page, int pageSize, out int totalRow);
+        IEnumerable<Apartment> GetListApartmentName(string name);
     }
 
     public class ApartmentRepository : RepositoryBase<Apartment>, IApartmentRepository
@@ -16,11 +16,9 @@ namespace Astec.Data.Repositories
         {
         }
 
-        public IEnumerable<Apartment> GetListApartment(int page, int pageSize, out int totalRow)
+        public IEnumerable<Apartment> GetListApartmentName(string name)
         {
-            var query = DbContext.Apartments.ToList();
-            totalRow = query.Count();
-            return query.OrderBy(a => a.ApartmentID).Skip((page - 1) * pageSize).Take(pageSize);
+            return this.DbContext.Apartments.Where(x => x.ApartmentName == name);
         }
     }
 }

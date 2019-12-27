@@ -13,6 +13,7 @@ namespace Astec.WebApp.Mappings
             Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
             Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
             Mapper.CreateMap<ApplicationModule, ApplicationModuleViewModel>();
+            Mapper.CreateMap<Employee, EmployeeViewModel>();
             
         }
     }
