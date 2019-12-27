@@ -74,7 +74,7 @@
                 }
             }
 
-            apiService.get('api/employee/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
+            apiService.get('/api/employee/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
         }
 
         function dataLoadCompleted(result) {

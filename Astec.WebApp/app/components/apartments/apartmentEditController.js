@@ -3,7 +3,7 @@
         $scope.UpdateApartment = UpdateApartment;
 
         function loadApartmentDetail() {
-            apiService.get('api/apartment/getbyid/' + $stateParams.id, null, function (result) {
+            apiService.get('/api/apartment/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.apartment = result.data;
             }, function (error) {
                     notificationService.displayError(error.data);
@@ -11,7 +11,7 @@
         }
 
         function UpdateApartment() {
-            apiService.put('api/apartment/update', $scope.apartment,
+            apiService.put('/api/apartment/update', $scope.apartment,
                 function (result) {
                     notificationService.displaySuccess(result.data.ApartmentName + ' đã được cập nhật.');
                     $state.go('apartments');

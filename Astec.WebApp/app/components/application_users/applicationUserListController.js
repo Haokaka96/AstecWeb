@@ -43,7 +43,7 @@
                 }
             }
 
-            apiService.get('api/applicationUser/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
+            apiService.get('/api/applicationUser/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
         }
 
         function dataLoadCompleted(result) {

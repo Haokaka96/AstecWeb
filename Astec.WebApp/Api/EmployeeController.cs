@@ -178,7 +178,7 @@ namespace Astec.WebApp.Api
         [Route("ExportXls")]
         public async Task<HttpResponseMessage> ExportXls(HttpRequestMessage request, string filter = null)
         {
-            string fileName = string.Concat("Product_" + DateTime.Now.ToString("yyyyMMddhhmmsss") + ".xlsx");
+            string fileName = string.Concat("Employee_" + DateTime.Now.ToString("yyyyMMddhhmmsss") + ".xlsx");
             var folderReport = ConfigHelper.GetByKey("ReportFolder");
             string filePath = HttpContext.Current.Server.MapPath(folderReport);
             if (!Directory.Exists(filePath))

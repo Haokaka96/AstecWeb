@@ -40,11 +40,11 @@ namespace Astec.WebApp.App_Start
             });
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
-            // Configure the sign in cookie
+            //Configure the sign in cookie
             //app.UseCookieAuthentication(new CookieAuthenticationOptions
             //{
             //    AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-            //    LoginPath = new PathString("/login.html"),
+            //    LoginPath = new PathString("~/app/components/login/loginView.html"),
             //    Provider = new CookieAuthenticationProvider
             //    {
             //        // Enables the application to validate the security stamp when the user logs in.

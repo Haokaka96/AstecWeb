@@ -1,6 +1,6 @@
 ﻿
 <script src="../../../Assets/admin/dist/js/theme.js"></script>
-<header class="header-top" header-theme="light">
+<header class="header-top" header-theme="light" ng-controller="rootController">
     <div class="container-fluid">
         <div class="d-flex justify-content-between">
             <div class="top-menu d-flex align-items-center">
@@ -71,13 +71,12 @@
                 </div>
                 <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button>
                 <div class="dropdown">
-                    <a class="dropdown-toggle" href="javascript:void(0)" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="../../../Assets/admin/img/user.jpg" alt=""><span class="hidden-xs">{{authentication.userName}}</span></a>
+                    <a class="dropdown-toggle" href="javascript:void(0)" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="../../../Assets/admin/img/user.jpg" alt=""><span class="hidden-xs" style="margin-left:5px;">{{authentication.userName}}</span></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i> Thông tin</a>
-                        <a class="dropdown-item" href="#"><i class="ik ik-user dropdown-icon"></i> {{authentication.UserName}}</a>
-                        <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i> Cài đặt</a>
-                        <a class="dropdown-item" href="#"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="ik ik-mail dropdown-icon"></i> Inbox</a>
-                        <a class="dropdown-item" href="#"><i class="ik ik-navigation dropdown-icon"></i> Tin nhắn</a>
+                        <a class="dropdown-item" href="javascript:void(0)"><i class="ik ik-user dropdown-icon"></i> {{user}}</a>
+                        <a class="dropdown-item" href="javascript:void(0)"><i class="ik ik-settings dropdown-icon"></i> Cài đặt</a>
+                        <a class="dropdown-item" href="javascript:void(0)"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="ik ik-mail dropdown-icon"></i> Inbox</a>
+                        <a class="dropdown-item" href="javascript:void(0)"><i class="ik ik-navigation dropdown-icon"></i> Tin nhắn</a>
                         <a class="dropdown-item" href="#" ng-click="logOut()"><i class="ik ik-power dropdown-icon"></i> Thoát</a>
                     </div>
                 </div>
@@ -101,7 +100,7 @@
 
         <div class="sidebar-content">
             <div class="nav-container">
-                <nav id="main-menu-navigation" class="navigation-main">
+                <nav id="main-menu-navigation" class="navigation-main" >
                     <div class="nav-lavel">Phần quản trị</div>
                     <div class="nav-item has-sub">
                         <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Quản lý</span></a>
@@ -146,7 +145,6 @@
             </div>
         </div>
     </aside>-->
-    <
     <!--div class="chat-panel" hidden>
         <div class="card">
             <div class="card-header d-flex justify-content-between">

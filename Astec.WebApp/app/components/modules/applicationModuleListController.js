@@ -31,7 +31,7 @@
         function getModules() {
             
             $scope.loading = true;
-            apiService.get('api/module/getall', null, dataLoadCompleted, dataLoadFailed);
+            apiService.get('/api/module/getall', null, dataLoadCompleted, dataLoadFailed);
         }
 
         function dataLoadCompleted(result) {

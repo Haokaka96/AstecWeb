@@ -24,10 +24,10 @@ a {
     cursor: pointer;
 }
 .pagination {
-    display: inline-block;
+    display: flex;
     padding-left: 0;
-    margin: 24px 0;
-    border-radius: 2px;
+    list-style: none;
+    border-radius: .25rem;
 }
 
     .pagination > li {
@@ -36,15 +36,18 @@ a {
 
         .pagination > li > a,
         .pagination > li > span {
-            position: relative;
-            float: left;
-            padding: 8px 16px;
-            line-height: 1.5;
-            text-decoration: none;
-            color: #00778b;
+            margin-left: 5px;
+            min-width: 30px;
+            height: 30px;
+            padding: 0;
+            text-align: center;
+            line-height: 30px;
+            border: none;
             background-color: #fff;
-            border: 1px solid #ddd;
-            margin-left: -1px;
+            color: #212121;
+            border-radius: 30px;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
         }
 
         .pagination > li:first-child > a,

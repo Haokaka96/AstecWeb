@@ -17,7 +17,8 @@
                     };
                     authenticationService.setTokenInfo(userInfo);
                     authData.authenticationData.IsAuthenticated = true;
-                    authData.authenticationData.userName = userName; 
+                    authData.authenticationData.userName = userName;                     
+                    authData.authenticationData.accessToken = userInfo.accessToken;
                     deferred.resolve(null);
                 })
                     .then(function (err, status) {
@@ -26,10 +27,6 @@
                         deferred.resolve(err);
                     });
                 return deferred.promise;
-            }
-            this.setUser = function (authData, $rootScope) {
-                authData.authenticationData.userName = userName;
-                $rootScope.user = authData.authenticationData.userName;
             }
 
             this.logOut = function () {

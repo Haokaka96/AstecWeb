@@ -28,7 +28,7 @@
                     checkedApartments: JSON.stringify(listId)
                 }
             }
-            apiService.del('api/apartment/deletemulti', config, function (result) {
+            apiService.del('/api/apartment/deletemulti', config, function (result) {
                 notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
                 search();
             }, function (error) {
@@ -68,7 +68,7 @@
                         id: id
                     }
                 }
-                apiService.del('api/apartment/delete', config, function () {
+                apiService.del('/api/apartment/delete', config, function () {
                     notificationService.displaySuccess('Xóa thành công');
                     search();
                 }, function () {

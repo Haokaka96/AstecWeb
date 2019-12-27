@@ -3,8 +3,8 @@
 (function () {
     angular.module('astec', ['astec.apartments','astec.employees',
         'astec.application_groups', 'astec.application_roles', 'astec.application_users','astec.application_modules',
-        'astec.common'])
-        .config(config).config(configAuthentication);
+        'astec.common','chart.js'])
+        .config(config).config(configAuthentication).config(chartJsProvider);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
@@ -57,5 +57,8 @@
                 }
             };
         });
+    }
+    function chartJsProvider(ChartJsProvider) {
+        ChartJsProvider.setOptions({ colors: ['#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
     }
 })();

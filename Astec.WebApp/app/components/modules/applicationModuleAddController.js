@@ -23,7 +23,7 @@
         }
 
         function loadParentModule() {
-            apiService.get('api/module/getallparents', null, function (result) {
+            apiService.get('/api/module/getallparents', null, function (result) {
                 console.log(result);
                 $scope.parentCategories = commonService.getTree(result.data, "Id", "ParentId");
                 $scope.parentCategories.forEach(function (item) {
