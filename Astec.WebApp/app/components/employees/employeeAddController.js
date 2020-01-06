@@ -8,9 +8,7 @@
         }
        
         function addEmployee() {
-            debugger;
-            
-            
+
             apiService.post('/api/employee/create', $scope.employee,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');

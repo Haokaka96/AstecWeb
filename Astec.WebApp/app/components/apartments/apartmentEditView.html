@@ -22,7 +22,7 @@
             <div class="form-group row">
                 <label for="Location" class="col-sm-3 col-form-label">Vị trí</label>
                 <div class="col-sm-9">
-                    <input type="email" class="form-control" id="Location" name="Location" placeholder="Nhập vị trí" ng-model="apartment.Location">
+                    <input type="text" class="form-control" id="Location" name="Location" placeholder="Nhập vị trí" ng-model="apartment.Location">
                 </div>
             </div>
             <div class="form-group row">
@@ -43,7 +43,7 @@
             <div class="form-group row">
                 <div class="col-sm-3 col-form-label"></div>
                 <div class="col-sm-9">
-                    <button type="submit" ng-disabled="frmAddApartment.ApartmentName.$invalid" class="btn btn-primary mr-2"><i class="fa fa-save"></i> Lưu</button>
+                    <button type="submit" ng-disabled="frmAddApartment.$invalid" class="btn btn-primary mr-2"><i class="fa fa-save"></i> Lưu</button>
                     <button class="btn btn-light" ui-sref="apartments"><i class="fas fa-times"></i> Cancel</button>
                 </div>
             </div>

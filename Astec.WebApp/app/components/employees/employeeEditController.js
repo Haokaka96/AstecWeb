@@ -3,21 +3,28 @@
         $scope.UpdateEmployee = UpdateEmployee;
 
         function loadEmlployeeDetail() {
-            apiService.get('api/employee/getbyid/' + $stateParams.id, null, function (result) {
-                $scope.apartment = result.data;
+            apiService.get('/api/employee/getbyid/' + $stateParams.id, null, function (result) {
+                $scope.employee = result.data;
             }, function (error) {
                     notificationService.displayError(error.data);
             });
         }
 
         function UpdateEmployee() {
-            apiService.put('api/emloyee/update', $scope.employee,
+            apiService.put('/api/employee/update', $scope.employee,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được cập nhật.');
                     $state.go('employees');
                 }, function (error) {
                     notificationService.displayError('Cập nhật không thành công.');
                 });
+        }
+        $scope.chooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.employee.ImageName = fileUrl;
+            }
+            finder.popup();
         }
         loadEmlployeeDetail();
     }]);

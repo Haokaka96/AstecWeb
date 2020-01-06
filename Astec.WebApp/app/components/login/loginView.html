@@ -1,79 +1,50 @@
-﻿
-<!--<div class="container login-bg">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Đăng nhập hệ thống</h5>
-                    <form class="form-signin" role="form" ng-submit="loginSubmit()" method="post">
-                        <div class="form-label-group">
+﻿<div class="auth-wrapper">
+    <div class="container-fluid h-100">
+        <div class="row flex-row h-100 bg-white">
+            <div class="col-xl-4 col-lg-2 col-md-4 col-xs-2 p-0 d-md-block d-lg-block d-sm-none d-none">
 
-                            <input type="text" id="UserName" class="form-control" placeholder="Tên đăng nhập" ng-model="loginData.userName" autofocus>
-                            <label for="UserName"><i class="fa fa-user"></i> Tên đăng nhập</label>
+            </div>
+            <div class="col-xl-4 col-lg-8 col-md-8 col-xs-10 my-auto p-0">
+                <div class="authentication-form mx-auto form-border">
+                    <div class="logo-centered">
+                        <a href="../index.html">
+                            <img src="../../../Assets/admin/src/img/brand.svg" />
+                        </a>
+                    </div>
+                    <h3 style="text-align:center;">Đăng nhập hệ thống</h3>
+                    <form role="form" novalidate ng-submit="loginSubmit()" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Tên đăng nhập" ng-model="loginData.userName">
+                            <i class="ik ik-user"></i>
                         </div>
-                        <div class="form-label-group">
-                            <input type="password" id="Password" class="form-control" placeholder="Mật khẩu" ng-model="loginData.password">
-                            <label for="Password"><i class="fa fa-lock"></i> Mật khẩu</label>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Mật khẩu" ng-model="loginData.password">
+                            <i class="ik ik-lock"></i>
                         </div>
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Nhớ mật khẩu</label>
+                        <div class="row">
+                            <div class="col text-left">
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="item_checkbox" name="item_checkbox" value="option1">
+                                    <span class="custom-control-label">&nbsp;Nhớ mật khẩu</span>
+                                </label>
+                            </div>
+                            <div class="col text-right">
+                                <a href="#">Quên mật khẩu?</a>
+                            </div>
                         </div>
-                        <input type="submit" class="btn btn-lg btn-primary btn-block text-uppercase" id="btnLogin" value="Đăng nhập" />
-                        <hr class="my-4">
+                        <div class="sign-btn text-center">
+                            <button type="submit" class="btn btn-theme">Đăng nhập</button>
+                        </div>
                     </form>
+                    <div class="register">
+                        <p>Bạn chưa có tài khoản? <a href="#">Tạo mới tài khoản</a></p>
+                    </div>
                 </div>
+
+            </div>
+            <div class="col-xl-4 col-lg-2 col-md-2 col-xs-2 p-0 d-md-block d-lg-block d-sm-none d-none">
+
             </div>
         </div>
     </div>
-</div>-->
-    <div class="auth-wrapper">
-            <div class="container-fluid h-100">
-                <div class="row flex-row h-100 bg-white">
-                    <div class="col-xl-4 col-lg-2 col-md-4 col-xs-2 p-0 d-md-block d-lg-block d-sm-none d-none">
-
-                    </div>
-                    <div class="col-xl-4 col-lg-8 col-md-8 col-xs-10 my-auto p-0">
-                        <div class="authentication-form mx-auto form-border">
-                            <div class="logo-centered">
-                                <a href="../index.html">
-                                    <img src="../../../Assets/admin/src/img/brand.svg" />
-                                </a>
-                            </div>
-                            <h3 style="text-align:center;">Đăng nhập hệ thống</h3>
-                            <form role="form" novalidate ng-submit="loginSubmit()" method="post">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Tên đăng nhập" ng-model="loginData.userName">
-                                    <i class="ik ik-user"></i>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Mật khẩu" ng-model="loginData.password">
-                                    <i class="ik ik-lock"></i>
-                                </div>
-                                <div class="row">
-                                    <div class="col text-left">
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="item_checkbox" name="item_checkbox" value="option1">
-                                            <span class="custom-control-label">&nbsp;Nhớ mật khẩu</span>
-                                        </label>
-                                    </div>
-                                    <div class="col text-right">
-                                        <a href="#">Quên mật khẩu?</a>
-                                    </div>
-                                </div>
-                                <div class="sign-btn text-center">
-                                    <button type="submit" class="btn btn-theme">Đăng nhập</button>
-                                </div>
-                            </form>
-                            <div class="register">
-                                <p>Bạn chưa có tài khoản? <a href="#">Tạo mới tài khoản</a></p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-xl-4 col-lg-2 col-md-2 col-xs-2 p-0 d-md-block d-lg-block d-sm-none d-none">
-
-                    </div>
-                </div>
-            </div>
-    </div>
+</div>

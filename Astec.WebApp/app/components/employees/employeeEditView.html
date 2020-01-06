@@ -1,41 +1,68 @@
 ﻿<section class="card-header">
-    <h1> Danh sách căn hộ</h1>
+    <h1> Danh sách nhân viên</h1>
     <ul class="breadcrumb">
         <li><a href="#!/home"> <i class="fa fa-home"></i> Trang chủ </a></li>
-        <li style="margin-left:5px;"><a ui-sref="apartments"> > Căn hộ</a></li>
+        <li style="margin-left:5px;"><a ui-sref="employees"> > Nhân viên</a></li>
         <li class="active" style="margin-left:5px;"><a href="javascript:void(0)"> > Chỉnh sửa</a></li>
     </ul>
 </section>
 <div class="card" style="min-height: 484px;">
-    <div class="card-header"><h3>Chỉnh sửa căn hộ</h3></div>
+    <div class="card-header"><h3>Chỉnh sửa nhân viên</h3></div>
     <div class="card-body">
-        <form class="forms-sample" novalidate name="frmUpdateApartment" role="form" ng-submit="UpdateApartment()">
-            <input type="hidden" id="txtId" ng-model="apartment.ApartmentID" />
-            <div class="form-group row">
-                <label for="ApartmentName" class="col-sm-3 col-form-label">Tên căn hộ</label>
+        <form class="forms-sample" novalidate name="frmUpdateEmployee" role="form" ng-submit="UpdateEmployee()">
+            <div class="form-group row" ng-class="{ 'has-error' : frmUpdateEmployee.Name.$invalid && !frmUpdateEmployee.Name.$pristine }">
+                <label for="Name" class="col-sm-3 col-form-label">Tên nhân viên</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ApartmentName" name="ApartmentName" required ng-maxlength="50" placeholder="Nhập tên căn hộ" ng-model="apartment.ApartmentName">
-                    <span ng-show="frmUpdateApartment.ApartmentName.$invalid" class="has-error">Tên căn hộ không được để trống</span>
-                    <span ng-show="frmUpdateApartment.ApartmentName.$error.maxlength" class="has-error">Tên căn chỉ được 50 ký tự</span>
+                    <input type="text" class="form-control" id="Name" required ng-maxlength="50" name="Name" placeholder="Nhập tên nhân viên" ng-model="employee.Name">
+                    <span ng-show="frmUpdateEmployee.Name.$touched && frmUpdateEmployee.Name.$invalid" ng-class="{ 'has-error' : frmUpdateEmployee.Name.$invalid && !frmUpdateEmployee.Name.$pristine }">Tên nhân viên không được để trống.</span>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Location" class="col-sm-3 col-form-label">Vị trí</label>
+                <label for="DateOfBirth" class="col-sm-3 col-form-label">Ngày sinh</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" id="DateOfBirth" required reqired-message="Ngày sinh không được để trống." value="{{ employee.DateOfBirth | date: 'yyyy-MM-dd' }}" name="DateOfBirth" ng-model="employee.DateOfBirth">
+                </div>
+            </div>
+            <div class="row form-group">
+                <label for="Gender" class="col-form-label col-sm-3 ">Giới tính </label>
+                <div class="col-sm-4">
+                    <select class="form-control" ng-model="employee.Gender">
+                        <option ng-value="">--Chọn giới tính--</option>
+                        <option ng-value="true">Nam</option>
+                        <option ng-value="false">Nữ</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Phone" class="col-sm-3 col-form-label">Số điện thoại</label>
                 <div class="col-sm-9">
-                    <input type="email" class="form-control" id="Location" name="Location" placeholder="Nhập vị trí" ng-model="apartment.Location">
+                    <input type="text" class="form-control" id="Phone" name="Phone" ng-model="employee.Phone">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Description" class="col-sm-3 col-form-label">Mô tả</label>
+                <label for="Image1" class="col-sm-3 col-form-label">Ảnh</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Description" name="Description" placeholder="Nhập mô tả" ng-model="apartment.Description">
+                    <input type="text" id="Image" class="form-control" ng-model="employee.ImageName" />
+                    <button type="button" class=" btn btn-default" ng-click="chooseImage()">Chọn ảnh</button>
+                    <div class="col-sm-12">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-4"><img src="{{employee.ImageName}}" class="image-view" alt="" /></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Address" class="col-sm-3 col-form-label">Địa chỉ</label>
+                <div class="col-sm-9">
+                    <textarea cols="3" class="form-control" id="Address" name="Address" placeholder="Nhập địa chỉ" ng-model="employee.Address"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputMobile" class="col-sm-3 col-form-label">Trạng thái</label>
                 <div class="col-sm-9">
-                    <label class="custom-control custom-radio">
-                        <input type="checkbox" class="custom-control-input" ng-checked="apartment.Status" ng-model="apartment.Status">
+                    <label class="custom-control custom-checkbox form-group">
+                        <input type="checkbox" class="custom-control-input" ng-checked="employee.Status" ng-model="employee.Status">
                         <span class="custom-control-label">&nbsp;Kích hoạt</span>
                     </label>
                 </div>
@@ -43,10 +70,15 @@
             <div class="form-group row">
                 <div class="col-sm-3 col-form-label"></div>
                 <div class="col-sm-9">
-                    <button type="submit" ng-disabled="frmAddApartment.ApartmentName.$invalid" class="btn btn-primary mr-2"><i class="fa fa-save"></i> Lưu</button>
-                    <button class="btn btn-light" ui-sref="apartments"><i class="fas fa-times"></i> Cancel</button>
+                    <button type="submit" ng-disabled="frmAddEmployee.$invalid" class="btn btn-primary mr-2"><i class="fa fa-save"></i> Lưu</button>
+                    <button class="btn btn-light" ui-sref="employees"><i class="fas fa-times"></i> Cancel</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        console.log($('#test').val());
+    });
+</script>

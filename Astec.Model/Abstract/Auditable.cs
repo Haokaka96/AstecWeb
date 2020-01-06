@@ -12,7 +12,7 @@ namespace Astec.Model.Abstract
         /// <summary>
         /// Người tạo
         /// </summary>
-        [MaxLength(256)]
+        [StringLength(256)]
         public string CreatedBy { set; get; }
         /// <summary>
         /// Ngày sửa
@@ -21,11 +21,11 @@ namespace Astec.Model.Abstract
         /// <summary>
         /// Người sửa
         /// </summary>
-        [MaxLength(256)]
+        [StringLength(256)]
         public string UpdatedBy { get; set; }
-        [MaxLength(256)]
+        [StringLength(256)]
         public string MetaKeyword { set; get; }
-        [MaxLength(256)]
+        [StringLength(256)]
         public string MetaDescription { set; get; }
         /// <summary>
         /// Trạng thái

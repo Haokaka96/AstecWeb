@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -100,6 +101,7 @@ namespace Astec.WebApp.Api
         {
             return CreateHttpResponse(request, () =>
             {
+                var identity = (ClaimsIdentity)User.Identity;
                 HttpResponseMessage response = null;
                 if (!ModelState.IsValid)
                     response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
@@ -108,7 +110,7 @@ namespace Astec.WebApp.Api
                     Employee newEmployee = new Employee();
                     newEmployee.UpdateEmployee(employeeViewModel);
                     newEmployee.CreatedDate = DateTime.Now;
-                    newEmployee.CreatedBy = "Administrator";
+                    newEmployee.CreatedBy = identity.Name;
                     _employeeService.Add(newEmployee);
                     _employeeService.SaveChanges();
                     var responseData = Mapper.Map<Employee, EmployeeViewModel>(newEmployee);
@@ -125,6 +127,7 @@ namespace Astec.WebApp.Api
         {
             return CreateHttpResponse(request, () =>
             {
+                var identity = (ClaimsIdentity)User.Identity;
                 HttpResponseMessage response = null;
                 if (!ModelState.IsValid)
                 {
@@ -136,7 +139,7 @@ namespace Astec.WebApp.Api
 
                     db.UpdateEmployee(employeeViewModel);
                     db.UpdatedDate = DateTime.Now;
-                    db.UpdatedBy = "Administrator";
+                    db.UpdatedBy = identity.Name;
 
                     _employeeService.Update(db);
                     _employeeService.SaveChanges();
