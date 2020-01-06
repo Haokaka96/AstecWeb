@@ -4461,6 +4461,7 @@
     <Content Include="node_modules\angular-chart.js\tmp\bower_components\chart.js\scripts\release.sh" />
     <Content Include="node_modules\angular-chart.js\tmp\bower_components\chart.js\thankyou.md" />
     <Content Include="node_modules\angular-chart.js\tmp\Dockerfile-alpine" />
+    <Content Include="HuongDanSuDung.docx" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -4489,7 +4490,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin1\Test.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
