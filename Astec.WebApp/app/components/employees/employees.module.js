@@ -23,6 +23,12 @@
             parent: "base",
             templateUrl: "/app/components/employees/employeeEditView.html",
             controller: "employeeEditController"
+        }).state('detail_employee', {
+            //params: ['id'],
+            url: "/detail_employee/:id",
+            //parent: "base",
+            templateUrl: "/app/components/employees/employeeDetailView.html",
+            controller: "employeeDetailController"
         });
     }
 })(angular.module('astec.employees', ['astec.common']));

@@ -1,0 +1,115 @@
+﻿
+<section class="card-header">
+    <h1>Báo cáo, thống kê</h1>
+    <nav class="breadcrumb-container" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a ui-sref="home"><i class="ik ik-home"></i></a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0)">Báo cáo, thống kê</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Thống kê nhân viên</li>
+        </ol>
+    </nav>
+</section>
+
+<section class="card-content">
+    <div class="row clearfix">
+        <div class="card">
+            <div class="card-body">
+                
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="fromDate" class="col-form-label">Từ ngày:</label>
+                                <div class="form-group">
+                                    <input type="text" id="fromDate" class="form-control" name="fromDate" ng-model="fromDate"
+                                           placeholder="dd-MM-yyyy" onfocus="(this.type='date')" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="toDate" class="col-form-label">Đến ngày:</label>
+                                <div class="form-group">
+                                    <input type="text" id="toDate" class="form-control" name="toDate" onfocus="(this.type='date')" ng-model="toDate"
+                                           placeholder="dd-MM-yyyy" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <button class="col-sm-12 btn btn-success" ng-click="filter()"><i class="fas fa-filter"></i> Lọc</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="row ">
+                            <div class="col-md-6"></div>
+                            <div class=" col-md-6">
+                                <button class="btn btn-info col-sm-12 pull-right" ng-click="exportExcel()"><i class="fa fa-file-excel"> Xuất file Excel</i></button>
+                                <button class="btn btn-inverse col-sm-12 pull-right" onclick="printJS('printJS-div', 'html')"><i class="fa fa-file-pdf"> In file PDF</i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="row">
+
+    <div class="col-lg-12 col-xl-7">
+        <div class="card sale-card">
+            <div class="card-header ">
+                <h3>Biểu đồ</h3>
+            </div>
+            <div class="card-block text-center">
+                <canvas id="line" class="chart chart-line" chart-data="chartData"
+                        chart-labels="labels" chart-series="series" chart-options="options"
+                        chart-dataset-override="datasetOverride" chart-click="onClick">
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-xl-5">
+        <div class="card sale-card">
+            <div class="card-header ">
+                <h3>Dữ liệu thống kê</h3>
+            </div>
+            <div class="card-body" id="printJS-div">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <td>Họ tên</td>
+                            <td>Giới tính</td>
+                            <td>Ngày sinh</td>
+                            <td>Địa chỉ</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in tableData | filter:filterExpression ">
+                            <td>
+                                {{item.FullName}}
+                            </td>
+                            <td>
+                                {{item.Gender | genderFilter}}
+                            </td>
+                            <td>
+                                {{item.DateOfBirth | date:'dd-MM-yyyy'}}
+                            </td>
+                            <td>
+                                {{item.Address}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

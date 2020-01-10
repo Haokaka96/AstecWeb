@@ -2,7 +2,8 @@
 
 (function () {
     angular.module('astec', ['astec.apartments','astec.employees',
-        'astec.application_groups', 'astec.application_roles', 'astec.application_users','astec.application_modules',
+        'astec.application_groups', 'astec.application_roles', 'astec.application_users', 'astec.application_modules',
+        'astec.statistics',
         'astec.common','chart.js'])
         .config(config).config(configAuthentication).config(chartJsProvider);
 

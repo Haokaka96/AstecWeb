@@ -21,6 +21,7 @@
                     filter: $scope.keyword
                 }
             }
+            
             apiService.get('/api/employee/ExportXls', config, function (response) {
                 if (response.status = 200) {
                     window.location.href = response.data.Message;
@@ -96,7 +97,13 @@
             $scope.filterExpression = '';
             search();
         }
-
+        $scope.loadEmlployeeDetail =function(id) {
+            apiService.get('/api/employee/getbyid/' + id, null, function (result) {
+                $scope.employee = result.data;
+            }, function (error) {
+                notificationService.displayError(error.data);
+            });
+        }
         $scope.search();
     }
 })(angular.module('astec.employees'));

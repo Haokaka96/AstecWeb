@@ -31,6 +31,7 @@
 
             this.logOut = function () {
                 authenticationService.removeToken();
+                authData.authenticationData.accessToken = "";
                 authData.authenticationData.IsAuthenticated = false;
                 authData.authenticationData.userName = "";
             }

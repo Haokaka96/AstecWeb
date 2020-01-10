@@ -29,6 +29,8 @@
                 ]
             }
         } 
+
+
     };
 
     app.controller("BubbleCtrl",

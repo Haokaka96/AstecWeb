@@ -3,8 +3,7 @@
     app.controller("accountController", ["$scope", "apiService", function ($scope, apiService) {
         $scope.user = '';
         apiService.get('/api/account/get', null, function (result) {
-            $scope.user = result.data;
-            console.log($scope.user)
+            $scope.user = result.data;          
         }, function (error) {
                 console.log(error);
         });

@@ -83,6 +83,7 @@
     <Compile Include="EmployeeService.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Astec.Common\Astec.Common.csproj">

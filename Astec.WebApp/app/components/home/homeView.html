@@ -1,4 +1,15 @@
-﻿<section class="card-header">
+﻿<script src="../../../Assets/admin/plugins/amcharts/amcharts.js"></script>
+<script src="../../../Assets/admin/js/chart-amcharts.js"></script>
+<script src="../../../Assets/admin/plugins/amcharts/amcharts.js"></script>
+<script src="../../../Assets/admin/plugins/amcharts/gauge.js"></script>
+<script src="../../../Assets/admin/plugins/amcharts/serial.js"></script>
+<script src="../../../Assets/admin/plugins/amcharts/themes/light.js"></script>
+<script src="../../../Assets/admin/plugins/amcharts/animate.min.js"></script>
+<script src="../../../Assets/admin/plugins/amcharts/pie.js"></script>
+<script src="../../../Assets/admin/plugins/ammap3/ammap/ammap.js"></script>
+<script src="../../../Assets/admin/plugins/ammap3/ammap/maps/js/usaLow.js"></script>
+
+<section class="card-header">
     <h1> Chào mừng đến với trang quản trị</h1>
     <ul class="breadcrumb">
         <li class="active"><a href="#!/home"> <i class="fa fa-home"></i> Trang chủ </a></li>
@@ -6,6 +17,37 @@
 </section>
 <div class="row clearfix" style="margin-bottom:15px;"></div>
 <div class="row">
+    <div class="col-md-6 col-xl-4">
+        <div class="card sale-card">
+            <div class="card-header ">
+                <h3>Smoothed Line Chart</h3>
+            </div>
+            <div class="card-block text-center">
+                <div id="smoothed_line_chart" class="chart-shadow" style="height:400px"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-4">
+        <div class="card sale-card">
+            <div class="card-header ">
+                <h3>Bar chart</h3>
+            </div>
+            <div class="card-block text-center">
+                <div id="bar_chart" class="chart-shadow" style="height:400px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <div class="card sale-card">
+            <div class="card-header ">
+                <h3>Angular Gauge</h3>
+            </div>
+            <div class="card-block text-center">
+                <div id="angular_guage" class="chart-shadow" style="height:400px"></div>
+            </div>
+        </div>
+    </div>
     <div class="col-md-6 col-xl-4">
         <div class="card sale-card">
             <div class="card-header ">
@@ -42,7 +84,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 
