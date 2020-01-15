@@ -1,9 +1,13 @@
 ﻿<section class="card-header">
-    <h1> Danh sách nhân viên</h1>
-    <ul class="breadcrumb">
-        <li><a href="#!/home"> <i class="fa fa-home"></i> Trang chủ </a></li>
-        <li class="active" style="margin-left:5px;"><a href="javascript:void(0)"> > Nhân viên</a></li>
-    </ul>
+    <h1>Nhân viên</h1>
+    <nav class="breadcrumb-container" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a ui-sref="home"><i class="ik ik-home"></i> Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Danh sách nhân viên</li>
+        </ol>
+    </nav>
 </section>
 <section class="card-content">
     <div class="row clearfix">
@@ -14,19 +18,21 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" ng-model="filterExpression" placeholder="Nhập từ khóa...">
                             <div class="input-group-append">
-                                <button class="input-group-text" ng-click="search()"><i class="fa fa-search"> Tìm kiếm</i></button>
+                                <span class="input-group-text"><i class="fa fa-search"> Tìm kiếm</i></span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 row">
-                        <div class="col-md-6"></div>
-                        <div class="col-md-6 pull-right" style="float:right">
-                            <button class="btn btn-info" ng-click="exportExcel()"><i class="fa fa-file-excel"> Xuất file Excel</i></button>
-                            <button class="btn btn-inverse" onclick="printJS('printJS-div', 'html')"><i class="fa fa-file-pdf"> In file PDF</i></button>
+                    <div class="col-md-6 ">
+                        <div class="row ">
+                            <div class="col-md-6"></div>
+                            <div class=" col-md-6">
+                                <button class="btn btn-info col-sm-12 pull-right" ng-click="exportExcel()"><i class="fa fa-file-excel"> Xuất file Excel</i></button>
+                                <button class="btn btn-inverse col-sm-12 pull-right" onclick="printJS('printJS-div', 'html')"><i class="fa fa-file-pdf"> In file PDF</i></button>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button class="btn btn-success" ui-sref="add_employee"><i class="fa fa-plus"></i> Thêm mới </button>
+                        <button class="btn btn-success col-sm-1" ui-sref="add_employee"><i class="fa fa-plus"></i> Thêm mới </button>
                     </div>
                 </div>
             </div>
@@ -34,7 +40,7 @@
     </div>
 </section>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" ng-controller="employeeListController">
         <div class="card">
             <div class="card-body p-0 table-border-style" id="printJS-div">
                 <div class="table-responsive">
@@ -67,10 +73,18 @@
                         </tbody>
                         <tfoot>
                             <tr>
+
                                 <td colspan="6"><span class="pull-right">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</span></td>
                             </tr>
                         </tfoot>
-                    </table>
+                    </table>    
+                    <div ng-if="loading" class="col-md-12 row">
+                        <div class="col-md-4"></div>
+                        <div class="col-xs-4">
+                            <img src="../../../Assets/admin/img/Spinner-1s-200px.gif" style="width:40%;height:60%;" /> <label class="label label-primary">Đang tải...</label>
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,7 +99,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="text-red" >Nhân viên: {{employee.Name}}</h4>
+                <h4 class="text-red">Nhân viên: {{employee.Name}}</h4>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">Close</span>
@@ -97,7 +111,7 @@
                     <p>{{employee.Name}}</p>
                 </div>-->
                 <div class=" row">
-                    <p class="col-md-3">Ngày sinh:</p>
+                    <p class="col-md-3">olNgày sinh:</p>
                     <p>{{employee.DateOfBirth|date:'dd-MM-yyyy'}}</p>
                 </div>
                 <div class="row">

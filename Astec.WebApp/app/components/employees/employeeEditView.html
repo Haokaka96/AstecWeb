@@ -1,10 +1,16 @@
 ﻿<section class="card-header">
-    <h1> Danh sách nhân viên</h1>
-    <ul class="breadcrumb">
-        <li><a href="#!/home"> <i class="fa fa-home"></i> Trang chủ </a></li>
-        <li style="margin-left:5px;"><a ui-sref="employees"> > Nhân viên</a></li>
-        <li class="active" style="margin-left:5px;"><a href="javascript:void(0)"> > Chỉnh sửa</a></li>
-    </ul>
+    <h1>Nhân viên</h1>
+    <nav class="breadcrumb-container" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a ui-sref="home"><i class="ik ik-home"></i> Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a ui-sref="employees">Danh sách nhân viên</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa nhân viên</li>
+        </ol>
+    </nav>
 </section>
 <div class="card" style="min-height: 484px;">
     <div class="card-header"><h3>Chỉnh sửa nhân viên</h3></div>

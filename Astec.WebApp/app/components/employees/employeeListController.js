@@ -18,7 +18,7 @@
         function exportExcel() {
             var config = {
                 params: {
-                    filter: $scope.keyword
+                    filter: $scope.filterExpression
                 }
             }
             
@@ -64,6 +64,7 @@
                 });
         }
         function search(page) {
+           
             page = page || 0;
 
             $scope.loading = true;
@@ -74,7 +75,7 @@
                     filter: $scope.filterExpression
                 }
             }
-
+            
             apiService.get('/api/employee/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
         }
 
@@ -83,7 +84,7 @@
             $scope.page = result.data.Page;
             $scope.pagesCount = result.data.TotalPages;
             $scope.totalCount = result.data.TotalCount;
-            $scope.loading = false;
+            $scope.loading=false;
 
             if ($scope.filterExpression && $scope.filterExpression.length) {
                 notificationService.displayInfo(result.data.Items.length + ' items found');

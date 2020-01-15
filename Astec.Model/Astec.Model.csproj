@@ -96,6 +96,7 @@
     <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\Ethnic.cs" />
     <Compile Include="Models\FingerPrint.cs" />
+    <Compile Include="Models\Log.cs" />
     <Compile Include="Models\ResidentImage.cs" />
     <Compile Include="Models\Nation.cs" />
     <Compile Include="Models\Resident.cs" />

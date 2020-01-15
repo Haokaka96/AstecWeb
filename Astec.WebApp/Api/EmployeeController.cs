@@ -6,6 +6,7 @@ using Astec.WebApp.Infrastructure.Core;
 using Astec.WebApp.Infrastructure.Extentions;
 using Astec.WebApp.Models;
 using AutoMapper;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,7 @@ namespace Astec.WebApp.Api
     [Authorize(Roles ="admin")]
     public class EmployeeController : ApiControllerBase
     {
+        private readonly ILog log = LogManager.GetLogger(typeof(EmployeeController));
         IEmployeeService _employeeService;
         public EmployeeController(IErrorService errorService, IEmployeeService employeeService) : base(errorService)
         {
@@ -48,34 +50,42 @@ namespace Astec.WebApp.Api
                     TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
                     Items = modelVm
                 };
-
+                
                 response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
-
                 return response;
             });
         }
 
         [Route("getlistpaging")]
+        [Authorize(Roles = "View")]
         [HttpGet]
+
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
             return CreateHttpResponse(request, () =>
             {
+                var identity = (ClaimsIdentity)User.Identity;
                 HttpResponseMessage response = null;
                 int totalRow = 0;
-                var model = _employeeService.GetAll(page, pageSize, out totalRow, filter);
-                IEnumerable<EmployeeViewModel> modelVm = Mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeViewModel>>(model);
-
-                PaginationSet<EmployeeViewModel> pagedSet = new PaginationSet<EmployeeViewModel>()
+                try
                 {
-                    Page = page,
-                    TotalCount = totalRow,
-                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
-                    Items = modelVm
-                };
+                    var model = _employeeService.GetAll(page, pageSize, out totalRow, filter);
+                    IEnumerable<EmployeeViewModel> modelVm = Mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeViewModel>>(model);
 
-                response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
-
+                    PaginationSet<EmployeeViewModel> pagedSet = new PaginationSet<EmployeeViewModel>()
+                    {
+                        Page = page,
+                        TotalCount = totalRow,
+                        TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
+                        Items = modelVm
+                    };
+                    response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
+                    log.Info("UserName: " + identity.Name+"," +" Data: "+ response);
+                }
+                catch(Exception ex)
+                {
+                    log.Error(ex.Message);
+                }              
                 return response;
             });
         }
@@ -104,7 +114,10 @@ namespace Astec.WebApp.Api
                 var identity = (ClaimsIdentity)User.Identity;
                 HttpResponseMessage response = null;
                 if (!ModelState.IsValid)
+                {
                     response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                    log.Error("UserName: " + identity.Name + "," + " Data: " + response);
+                }
                 else
                 {
                     Employee newEmployee = new Employee();
@@ -115,13 +128,14 @@ namespace Astec.WebApp.Api
                     _employeeService.SaveChanges();
                     var responseData = Mapper.Map<Employee, EmployeeViewModel>(newEmployee);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                    log.Info("UserName: " + identity.Name + "," + " Data: " + response);
                 }
                 return response;
             });
         }
 
         [Route("update")]
-        [HttpPut]
+        [HttpPost]
         [Authorize(Roles = "Edit")]
         public HttpResponseMessage Update(HttpRequestMessage request, EmployeeViewModel employeeViewModel)
         {
@@ -132,6 +146,7 @@ namespace Astec.WebApp.Api
                 if (!ModelState.IsValid)
                 {
                     response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                    log.Error("UserName: " + identity.Name + "," + " Data: " + response);
                 }
                 else
                 {
@@ -146,23 +161,26 @@ namespace Astec.WebApp.Api
 
                     var responseData = Mapper.Map<Employee, EmployeeViewModel>(db);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                    log.Info("UserName: " + identity.Name + "," + " Data: " + response);
                 }
-
+               
                 return response;
             });
         }
 
         [Route("delete")]
-        [HttpDelete]
+        [HttpPost]
         [Authorize(Roles = "Delete")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
+                var identity = (ClaimsIdentity)User.Identity;
                 if (!ModelState.IsValid)
                 {
                     response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                    log.Error("UserName: " + identity.Name + "," + " Data: " + response);
                 }
                 else
                 {
@@ -171,8 +189,8 @@ namespace Astec.WebApp.Api
 
                     var responseData = Mapper.Map<Employee, EmployeeViewModel>(oldEmployee);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                    log.Info("UserName: " + identity.Name + "," + " Data: " + response);
                 }
-
                 return response;
             });
         }

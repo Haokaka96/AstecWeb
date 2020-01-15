@@ -1,4 +1,5 @@
 using Astec.WebApp.Mappings;
+using log4net.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Astec.WebApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            XmlConfigurator.Configure();
         }
     }
 }
