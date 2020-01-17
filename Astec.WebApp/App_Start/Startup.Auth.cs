@@ -122,16 +122,14 @@ namespace Astec.WebApp.App_Start
                     }
                     else
                     {
-                        context.SetError("invalid_group", "Bạn không phải là admin");
                         context.Rejected();
-                        
+                        context.SetError("invalid_group", "Bạn không phải là admin");
                     }
                 }
                 else
                 {
-                    context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.");
                     context.Rejected();
-                   
+                    context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.");
                 }
             }
         }
