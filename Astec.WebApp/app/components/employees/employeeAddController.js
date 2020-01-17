@@ -1,13 +1,17 @@
-﻿(function (app) {
+﻿
+
+(function (app) {
     app.controller('employeeAddController', ['apiService', '$scope', '$state', 'notificationService',function (apiService, $scope,$state, notificationService) {
         $scope.addEmployee = addEmployee;
        // $scope.files = [];
-        $scope.employee = {
-            ImageName: [],
-            Image:[]
-        }
+        //$scope.employee = {
+        //    ImageName: ,
+        //    Image:[]
+        //}
        
         function addEmployee() {
+            if ($scope.employee.ImageName == null)
+                $scope.employee.ImageName = '/Uploads/Images/img_avatar.png';
             apiService.post('/api/employee/create', $scope.employee,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
@@ -19,7 +23,7 @@
         $scope.chooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.employee.ImageName = fileUrl;
+                 $scope.employee.ImageName = fileUrl;    
             }
             finder.popup();
         }

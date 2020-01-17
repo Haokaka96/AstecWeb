@@ -11,6 +11,8 @@
         }
 
         function UpdateEmployee() {
+            if ($scope.employee.ImageName == null)
+                $scope.employee.ImageName = '/Uploads/Images/img_avatar.png';
             apiService.put('/api/employee/update', $scope.employee,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được cập nhật.');

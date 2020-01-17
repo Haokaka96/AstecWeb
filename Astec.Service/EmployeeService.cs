@@ -11,7 +11,7 @@ namespace Astec.Service
 {
     public interface IEmployeeService
     {
-        void Add(Employee employee);
+        Employee Add(Employee employee);
         void Update(Employee employee);
         // void Delete(int id);
         Employee Delete(int id);
@@ -30,9 +30,9 @@ namespace Astec.Service
             _employeeRepository = employeeRepository;
             _unitOfWork = unitOfWork;
         }
-        public void Add(Employee employee)
+        public Employee Add(Employee employee)
         {
-            _employeeRepository.Add(employee);
+            return _employeeRepository.Add(employee);
         }
 
         public Employee Delete(int id)

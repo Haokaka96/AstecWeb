@@ -3,9 +3,9 @@
 
     app.controller('employeeListController', employeeListController);
 
-    employeeListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
+    employeeListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox','$filter'];
 
-    function employeeListController($scope, apiService, notificationService, $ngBootbox) {
+    function employeeListController($scope, apiService, notificationService, $ngBootbox,$filter) {
         $scope.loading = true;
         $scope.data = [];
         $scope.page = 0;
@@ -15,6 +15,61 @@
         $scope.deleteItem = deleteItem;
         $scope.exportExcel = exportExcel;
         $scope.exportPdf = exportPdf;
+
+        $scope.selectAll = selectAll;
+
+        $scope.deleteMultiple = deleteMultiple;
+
+        //Xóa nhiều bản ghi
+        function deleteMultiple() {
+            debugger;
+            var listId = [];
+            $.each($scope.selected, function (i, item) {
+                listId.push(item.Id);
+            });
+            var config = {
+                params: {
+                    checkedList: JSON.stringify(listId)
+                }
+            }
+            apiService.del('/api/employee/deletemulti', config, function (result) {
+                debugger;
+                notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
+                search();
+            }, function(error) {
+                    debugger;
+                    console.log(error);
+                notificationService.displayError('Xóa không thành công');
+            });
+        }
+
+        //Chọn nhiều bản ghi
+        $scope.isAll = false;
+        function selectAll() {
+            if ($scope.isAll === false) {
+                angular.forEach($scope.data, function (item) {
+                    item.checked = true;
+                });
+                $scope.isAll = true;
+            } else {
+                angular.forEach($scope.data, function (item) {
+                    item.checked = false;
+                });
+                $scope.isAll = false;
+            }
+        }
+
+        $scope.$watch("data", function (n, o) {
+            var checked = $filter("filter")(n, { checked: true });
+            if (checked.length) {
+                $scope.selected = checked;
+                $('#btnDelete').removeAttr('disabled');
+            } else {
+                $('#btnDelete').attr('disabled', 'disabled');
+            }
+        }, true);
+
+        //Xuất file excel
         function exportExcel() {
             var config = {
                 params: {
@@ -31,6 +86,9 @@
 
             });
         }
+
+        //Bỏ không dùng
+        //Xuất file pdf
         function exportPdf(id) {
             var config = {
                 params: {
@@ -46,6 +104,8 @@
 
             });
         }
+
+        //Xóa 1 bản ghi
         function deleteItem(id) {
             $ngBootbox.confirm('Bạn có chắc muốn xóa?')
                 .then(function () {
@@ -63,6 +123,8 @@
                         });
                 });
         }
+
+        //Tìm kiếm
         function search(page) {
            
             page = page || 0;
@@ -79,7 +141,9 @@
             apiService.get('/api/employee/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
         }
 
+        //Load danh sách nhân viên
         function dataLoadCompleted(result) {
+            
             $scope.data = result.data.Items;
             $scope.page = result.data.Page;
             $scope.pagesCount = result.data.TotalPages;
@@ -90,6 +154,8 @@
                 notificationService.displayInfo(result.data.Items.length + ' items found');
             }
         }
+
+        //Lỗi khi load danh sách nhân viên
         function dataLoadFailed(response) {
             notificationService.displayError(response.data);
         }
@@ -98,9 +164,11 @@
             $scope.filterExpression = '';
             search();
         }
-        $scope.loadEmlployeeDetail =function(id) {
-            apiService.get('/api/employee/getbyid/' + id, null, function (result) {
-                $scope.employee = result.data;
+
+        //Load thông tin của 1 nhân viên
+        $scope.loadEmlployeeDetail = function (id) {
+            apiService.get('/api/employee/getbyid/' + id, null, function (result) {   
+                $scope.employee = result.data;   
             }, function (error) {
                 notificationService.displayError(error.data);
             });

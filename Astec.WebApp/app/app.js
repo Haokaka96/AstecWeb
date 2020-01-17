@@ -5,7 +5,9 @@
         'astec.application_groups', 'astec.application_roles', 'astec.application_users', 'astec.application_modules',
         'astec.statistics',
         'astec.common','chart.js'])
-        .config(config).config(configAuthentication).config(chartJsProvider);
+        .config(config).config(configAuthentication).config(['$httpProvider', function($httpProvider) {
+            $httpProvider.defaults.withCredentials = true;
+        }]);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 

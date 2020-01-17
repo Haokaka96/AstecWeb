@@ -119,11 +119,17 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http.Owin, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.7\lib\net45\System.Web.Http.Owin.dll</HintPath>
     </Reference>
@@ -1920,6 +1926,7 @@
     <Content Include="Assets\admin\img\credit\mastercard.png" />
     <Content Include="Assets\admin\img\credit\paypal2.png" />
     <Content Include="Assets\admin\img\credit\visa.png" />
+    <Content Include="Assets\admin\img\img_avatar.png" />
     <Content Include="Assets\admin\img\navbar\blue.jpg" />
     <Content Include="Assets\admin\img\navbar\dark.jpg" />
     <Content Include="Assets\admin\img\navbar\green.jpg" />
@@ -4488,6 +4495,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Assets\admin\img\Spinner-1s-200px.gif" />
+    <Content Include="Uploads\Images\img_avatar.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -4513,7 +4521,6 @@
     <Folder Include="node_modules\" />
     <Folder Include="Report\" />
     <Folder Include="Resources\" />
-    <Folder Include="Uploads\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

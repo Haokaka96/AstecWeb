@@ -1,7 +1,7 @@
 ﻿(function (app) {
     'use strict';
-    app.service('loginService', ['$http', '$q', 'authenticationService', 'authData',
-        function ($http, $q, authenticationService, authData) {
+    app.service('loginService', ['$http', '$q', 'authenticationService', 'authData', 'notificationService', '$injector',
+        function ($http, $q, authenticationService, authData, notificationService, $injector) {
             var userInfo;
             var deferred;
             this.login = function (userName, password) {
@@ -19,7 +19,12 @@
                     authData.authenticationData.IsAuthenticated = true;
                     authData.authenticationData.userName = userName;                     
                     authData.authenticationData.accessToken = userInfo.accessToken;
+                    var stateService = $injector.get('$state');
+                    notificationService.displaySuccess("Xin chào " + userName);
+                    stateService.go('home');
                     deferred.resolve(null);
+                }, function (response) {
+                        notificationService.displayError(response.data.error_description);
                 })
                     .then(function (err, status) {
                         authData.authenticationData.IsAuthenticated = false;

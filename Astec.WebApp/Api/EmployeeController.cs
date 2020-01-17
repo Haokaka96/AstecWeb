@@ -17,14 +17,20 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
+using System.Web.Script.Serialization;
 
 namespace Astec.WebApp.Api
 {
+    /// <summary>
+    /// Api nhân viên
+    /// </summary>
     [RoutePrefix("api/employee")]
     [Authorize(Roles ="admin")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EmployeeController : ApiControllerBase
     {
-        private readonly ILog log = LogManager.GetLogger(typeof(EmployeeController));
+        private readonly ILog log = LogManager.GetLogger(typeof(Employee));
         IEmployeeService _employeeService;
         public EmployeeController(IErrorService errorService, IEmployeeService employeeService) : base(errorService)
         {
@@ -56,6 +62,14 @@ namespace Astec.WebApp.Api
             });
         }
 
+        /// <summary>
+        /// Danh sách nhân viên
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="page">Số trang</param>
+        /// <param name="pageSize">Số bản ghi cần hiển thị trong 1 trang</param>
+        /// <param name="filter">Từ khóa tìm kiếm</param>
+        /// <returns></returns>
         [Route("getlistpaging")]
         [Authorize(Roles = "View")]
         [HttpGet]
@@ -67,29 +81,27 @@ namespace Astec.WebApp.Api
                 var identity = (ClaimsIdentity)User.Identity;
                 HttpResponseMessage response = null;
                 int totalRow = 0;
-                try
-                {
-                    var model = _employeeService.GetAll(page, pageSize, out totalRow, filter);
-                    IEnumerable<EmployeeViewModel> modelVm = Mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeViewModel>>(model);
+                var model = _employeeService.GetAll(page, pageSize, out totalRow, filter);
+                IEnumerable<EmployeeViewModel> modelVm = Mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeViewModel>>(model);
 
-                    PaginationSet<EmployeeViewModel> pagedSet = new PaginationSet<EmployeeViewModel>()
-                    {
-                        Page = page,
-                        TotalCount = totalRow,
-                        TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
-                        Items = modelVm
-                    };
-                    response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
-                    log.Info("UserName: " + identity.Name+"," +" Data: "+ response);
-                }
-                catch(Exception ex)
+                PaginationSet<EmployeeViewModel> pagedSet = new PaginationSet<EmployeeViewModel>()
                 {
-                    log.Error(ex.Message);
-                }              
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
+                    Items = modelVm
+                };
+                response = request.CreateResponse(HttpStatusCode.OK, pagedSet);     
                 return response;
             });
         }
 
+        /// <summary>
+        /// Tìm nhân viên theo Id
+        /// </summary>
+        /// <param name="request">Id nhân viên</param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("getbyid/{id:int}")]
         [HttpGet]
         [Authorize(Roles = "View")]
@@ -104,6 +116,12 @@ namespace Astec.WebApp.Api
             });
         }
 
+        /// <summary>
+        /// Thêm mới nhân viên
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="employeeViewModel"></param>
+        /// <returns></returns>
         [Route("create")]
         [HttpPost]
         [Authorize(Roles = "Create")]
@@ -125,17 +143,24 @@ namespace Astec.WebApp.Api
                     newEmployee.CreatedDate = DateTime.Now;
                     newEmployee.CreatedBy = identity.Name;
                     _employeeService.Add(newEmployee);
+
                     _employeeService.SaveChanges();
                     var responseData = Mapper.Map<Employee, EmployeeViewModel>(newEmployee);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
-                    log.Info("UserName: " + identity.Name + "," + " Data: " + response);
+                    log.Info("UserName: " + identity.Name + "," + " Data:{ Id:" + employeeViewModel.Id + ", Name: " + employeeViewModel.Name + ", ImageName: " + employeeViewModel.ImageName + ", Gender: " + employeeViewModel.Gender + ", DateOfBirth: " + employeeViewModel.DateOfBirth + ", Phone:" + employeeViewModel.Phone + ", Address: " + employeeViewModel.Address + ", Status" + employeeViewModel.Status);
                 }
                 return response;
             });
         }
 
+        /// <summary>
+        /// Cập nhật nhân viên
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="employeeViewModel"></param>
+        /// <returns></returns>
         [Route("update")]
-        [HttpPost]
+        [HttpPut]
         [Authorize(Roles = "Edit")]
         public HttpResponseMessage Update(HttpRequestMessage request, EmployeeViewModel employeeViewModel)
         {
@@ -161,15 +186,21 @@ namespace Astec.WebApp.Api
 
                     var responseData = Mapper.Map<Employee, EmployeeViewModel>(db);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
-                    log.Info("UserName: " + identity.Name + "," + " Data: " + response);
+                    log.Info("UserName: " + identity.Name + "," + " Data:{ Id:" + employeeViewModel.Id + ", Name: " + employeeViewModel.Name + ", ImageName: " + employeeViewModel.ImageName + ", Gender: " + employeeViewModel.Gender + ", DateOfBirth: " + employeeViewModel.DateOfBirth + ", Phone:" + employeeViewModel.Phone + ", Address: " + employeeViewModel.Address + ", Status" + employeeViewModel.Status);
                 }
                
                 return response;
             });
         }
 
+        /// <summary>
+        /// Xóa một bản ghi
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="id">Id nhân viên cần xóa</param>
+        /// <returns></returns>
         [Route("delete")]
-        [HttpPost]
+        [HttpDelete]
         [Authorize(Roles = "Delete")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
@@ -189,12 +220,53 @@ namespace Astec.WebApp.Api
 
                     var responseData = Mapper.Map<Employee, EmployeeViewModel>(oldEmployee);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
-                    log.Info("UserName: " + identity.Name + "," + " Data: " + response);
+                    log.Info("UserName: " + identity.Name + "," + " Data:{ Id:" + oldEmployee.Id + ", Name: " + oldEmployee.Name + ", ImageName: " + oldEmployee.ImageName + ", Gender: " + oldEmployee.Gender + ", DateOfBirth: " + oldEmployee.DateOfBirth + ", Phone:" + oldEmployee.Phone + ", Address: " + oldEmployee.Address + ", Status" + oldEmployee.Status);
                 }
                 return response;
             });
         }
 
+        /// <summary>
+        /// Xóa nhiều bản ghi
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="checkedEmployees">List Id nhân viên cần xóa</param>
+        /// <returns></returns>
+        [Route("deletemulti")]
+        [HttpDelete]
+        [Authorize(Roles ="Delete")]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedList)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listEmployee = new JavaScriptSerializer().Deserialize<List<int>>(checkedList);
+                    foreach (var item in listEmployee)
+                    {
+                        _employeeService.Delete(item);
+                    }
+
+                    _employeeService.SaveChanges();
+
+                    response = request.CreateResponse(HttpStatusCode.OK, listEmployee.Count);
+                }
+
+                return response;
+            });
+        }
+
+        /// <summary>
+        /// Xuất file Excel
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="filter">Từ khóa tìm kiếm</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("ExportXls")]
         public async Task<HttpResponseMessage> ExportXls(HttpRequestMessage request, string filter = null)
@@ -219,6 +291,12 @@ namespace Astec.WebApp.Api
             }
         }
 
+        /// <summary>
+        /// Xuất ra file pdf(Bỏ không dùng)
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="id">Id của nhân viên cần xuất thông tin</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("ExportPdf")]
         public async Task<HttpResponseMessage> ExportPdf(HttpRequestMessage request, int id)

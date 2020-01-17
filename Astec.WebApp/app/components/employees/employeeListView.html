@@ -32,7 +32,8 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button class="btn btn-success col-sm-1" ui-sref="add_employee"><i class="fa fa-plus"></i> Thêm mới </button>
+                        <button class="btn btn-success mb-6" ui-sref="add_employee"><i class="fa fa-plus"></i> Thêm mới </button>
+                        <button class="btn btn-dribbble mb-6 " ng-click="deleteMultiple()" id="btnDelete" disabled><i class="fa fa-trash"></i> Xóa nhiều bản ghi </button>
                     </div>
                 </div>
             </div>
@@ -40,14 +41,15 @@
     </div>
 </section>
 <div class="row">
-    <div class="col-md-12" ng-controller="employeeListController">
+    <div class="col-md-12" >
         <div class="card">
             <div class="card-body p-0 table-border-style" id="printJS-div">
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th style="text-align:center">ID</th>
+                                <th><input name="all" type="checkbox" ng-click="selectAll()" /></th>
+                                <th style="text-align:center">STT</th>
                                 <th>Tên nhân viên</th>
                                 <th>Ngày Sinh</th>
                                 <th>Ngày tạo</th>
@@ -57,7 +59,8 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in data| filter: filterExpression">
-                                <td style="text-align:center">{{item.Id}}</td>
+                                <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
+                                <td style="text-align:center">{{$index + 1}}</td>
                                 <td style="width:45%">{{item.Name}}</td>
                                 <td>{{item.DateOfBirth|date:'dd-MM-yyyy'}}</td>
                                 <td>{{item.CreatedDate|date:'dd-MM-yyyy'}}</td>
@@ -67,21 +70,21 @@
                                 <td style="text-align:center">
                                     <button class="btn btn-info btn-icon" ng-click="loadEmlployeeDetail(item.Id)" data-toggle="modal" data-target="#myModal" title="Xem chi tiết"><i class="fa fa-eye-slash"></i></button>
                                     <button class="btn btn-primary btn-icon" ui-sref="edit_employee({id:item.Id})" title="Chỉnh sửa"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-danger btn-icon" ng-click="deleteItem(item.Id)" title="Xóa"><i class="fa fa-trash-alt"></i></button>
+                                    <button class="btn btn-danger btn-icon" ng-click="deleteItem(item.Id)" title="Xóa" ><i class="fa fa-trash-alt"></i></button>
                                 </td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
 
-                                <td colspan="6"><span class="pull-right">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</span></td>
+                                <td colspan="7"><span class="pull-right">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</span></td>
                             </tr>
                         </tfoot>
                     </table>    
                     <div ng-if="loading" class="col-md-12 row">
                         <div class="col-md-4"></div>
                         <div class="col-xs-4">
-                            <img src="../../../Assets/admin/img/Spinner-1s-200px.gif" style="width:40%;height:60%;" /> <label class="label label-primary">Đang tải...</label>
+                            <img src="../../../Assets/admin/img/Spinner-1s-200px.gif" style="width:40%;height:70%;" /> <label class="label label-primary">Đang tải...</label>
                         </div>
                         <div class="col-xs-4"></div>
                     </div>
