@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/Haokaka96/AstecWeb#readme",
   "dependencies": {
-    "angular": "^1.7.8"
+    "angular": "^1.7.9"
   }
 }
