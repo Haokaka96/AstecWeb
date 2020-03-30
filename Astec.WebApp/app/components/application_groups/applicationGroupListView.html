@@ -1,0 +1,72 @@
+﻿<section class="card-header">
+    <h1> Danh sách nhóm</h1>
+    <ul class="breadcrumb">
+        <li><a href="#!/home"> <i class="fa fa-home"></i> Trang chủ </a></li>
+        <li class="active" style="margin-left:5px;"><a href="javascript:void(0)"> > Danh sách nhóm</a></li>
+    </ul>
+</section>
+<section class="card-content">
+    <div class="row clearfix">
+        <div class="box">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="filterExpression" placeholder="Nhập từ khóa...">
+                            <div class="input-group-append">
+                                <button class="input-group-text" ng-click="search()"><i class="fa fa-search"> Tìm kiếm</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <button class="btn btn-success" ui-sref="add_application_group"><i class="fa fa-plus"></i> Thêm mới </button>
+                        <button class="btn btn-danger" ng-click="deleteMultiple()" id="btnDelete" disabled>Xóa nhiều bản ghi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body p-0 table-border-style">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><input name="all" type="checkbox" ng-click="selectAll()" /></th>
+                                <th>ID</th>
+                                <th>Tên nhóm</th>
+                                <th>Mô tả</th>
+                                <th style="width:15%;text-align:center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in data">
+                                <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
+                                <td>{{item.ID}}</td>
+                                <td><a ui-sref="edit_application_group({id:item.ID})">{{item.Name}}</a></td>
+                                <td>
+                                    {{item.Description}}
+                                </td>
+                                <td style="text-align:center">
+                                    <button class="btn btn-primary" ui-sref="edit_application_group({id:item.ID})" title="Chỉnh sửa"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger" ng-click="deleteItem(item.ID)" title="Xóa"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5"><span class="pull-left">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></pager-directive>
+        </div>
+    </div>
+</div>

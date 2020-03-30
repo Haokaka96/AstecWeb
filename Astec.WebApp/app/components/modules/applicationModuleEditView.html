@@ -1,0 +1,40 @@
+﻿<section class="card-header">
+    <h1> Danh sách module</h1>
+    <ul class="breadcrumb">
+        <li><a href="#!/home"> <i class="fa fa-home"></i> Trang chủ </a></li>
+        <li style="margin-left:5px;"><a ui-sref="application_modules"> > Module</a></li>
+        <li class="active" style="margin-left:5px;"><a href="javascript:void(0)"> > Thêm mới</a></li>
+    </ul>
+</section>
+<div class="card" style="min-height: 484px;">
+    <div class="card-header"><h3>Chỉnh sửa module</h3></div>
+    <div class="card-body">
+        <form class="forms-sample" novalidate name="frmUpdateModule" role="form" ng-submit="updateModule()">
+            <div class="form-group row">
+                <label for="Name" class="col-sm-3 col-form-label">Tên module</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-class="{ 'has-error' : frmUpdateModule.Name.$invalid && !frmUpdateModule.Name.$pristine }" id="Name" required reqired-message="Tên module không được để trống." ng-maxlength="50" name="Name" placeholder="Nhập tên module" ng-model="appModule.Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Url" class="col-sm-3 col-form-label">Url</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Url" name="Url" placeholder="Nhập Url" ng-model="appModule.Url">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="ParentId" class="col-sm-3 col-form-label">ParentId</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ParentId" name="ParentId" placeholder="Nhập nút cha" ng-model="appModule.ParentId">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label"></div>
+                <div class="col-sm-9">
+                    <button type="submit" ng-disabled="frmUpdateModule.Name.$invalid" class="btn btn-primary mr-2"><i class="fa fa-save"></i> Lưu</button>
+                    <button class="btn btn-light" ui-sref="application_modules"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

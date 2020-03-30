@@ -1,0 +1,44 @@
+﻿
+<section class="card-header">
+    <h1> Nhóm người dùng</h1>
+    <ul class="breadcrumb">
+        <li><a href="#!/home"> <i class="fa fa-home"></i> Trang chủ </a></li>
+        <li style="margin-left:5px;"><a ui-sref="appGroups"> > Nhóm người dùng</a></li>
+        <li class="active" style="margin-left:5px;"><a href="javascript:void(0)"> > Thêm mới</a></li>
+    </ul>
+</section>
+<div class="card" style="min-height: 484px;">
+    <div class="card-header"><h3>Thêm mới nhóm người dùng</h3></div>
+    <div class="card-body">
+        <form class="forms-sample" novalidate name="frmAddAppGroup" role="form" ng-submit="addAppGroup()">
+            <div class="form-group row">
+                <label for="ApartmentName" class="col-sm-3 col-form-label">Tên nhóm</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Name" required ng-maxlength="50" name="Name" placeholder="Nhập tên nhóm" ng-model="group.Name">
+                    <span ng-show="frmAddAppGroup.Name.$invalid" class="has-error">Tên nhóm không được để trống</span>
+                    <span ng-show="frmAddAppGroup.Name.$error.maxlength" class="has-error">Tên nhóm chỉ được 50 ký tự</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Description" class="col-sm-3 col-form-label">Mô tả</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Description" name="Description" placeholder="Nhập mô tả" ng-model="group.Description">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label">
+                    <label ng-repeat="role in roles" for="Role">
+                        <input type="checkbox" checklist-model="group.Roles" id="Role" name="Role" checklist-value="role"> {{role.Description}}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label"></div>
+                <div class="col-sm-9">
+                    <button type="submit" ng-disabled="frmAddAppGroup.Name.$invalid" class="btn btn-primary mr-2"><i class="fa fa-save"></i> Lưu</button>
+                    <button class="btn btn-light" ui-sref="application_groups"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

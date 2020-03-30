@@ -1,0 +1,147 @@
+﻿<section class="card-header">
+    <h1>Nhân viên</h1>
+    <nav class="breadcrumb-container" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a ui-sref="home"><i class="ik ik-home"></i> Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Danh sách nhân viên</li>
+        </ol>
+    </nav>
+</section>
+<section class="card-content">
+    <div class="row clearfix">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" ng-model="filterExpression" placeholder="Nhập từ khóa...">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-search"> Tìm kiếm</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="row ">
+                            <div class="col-md-6"></div>
+                            <div class=" col-md-6">
+                                <button class="btn btn-info col-sm-12 pull-right" ng-click="exportExcel()"><i class="fa fa-file-excel"> Xuất file Excel</i></button>
+                                <button class="btn btn-inverse col-sm-12 pull-right" onclick="printJS('printJS-div', 'html')"><i class="fa fa-file-pdf"> In file PDF</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-success mb-6" ui-sref="add_employee"><i class="fa fa-plus"></i> Thêm mới </button>
+                        <button class="btn btn-dribbble mb-6 " ng-click="deleteMultiple()" id="btnDelete" disabled><i class="fa fa-trash"></i> Xóa nhiều bản ghi </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row">
+    <div class="col-md-12" >
+        <div class="card">
+            <div class="card-body p-0 table-border-style" id="printJS-div">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><input name="all" type="checkbox" ng-click="selectAll()" /></th>
+                                <th style="text-align:center">STT</th>
+                                <th>Tên nhân viên</th>
+                                <th>Ngày Sinh</th>
+                                <th>Ngày tạo</th>
+                                <th style="text-align:center">Giới tính</th>
+                                <th style="width:15%;text-align:center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in data| filter: filterExpression">
+                                <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
+                                <td style="text-align:center">{{$index + 1}}</td>
+                                <td style="width:45%">{{item.Name}}</td>
+                                <td>{{item.DateOfBirth|date:'dd-MM-yyyy'}}</td>
+                                <td>{{item.CreatedDate|date:'dd-MM-yyyy'}}</td>
+                                <td style="text-align:center">
+                                    {{item.Gender| genderFilter}}
+                                </td>
+                                <td style="text-align:center">
+                                    <button class="btn btn-info btn-icon" ng-click="loadEmlployeeDetail(item.Id)" data-toggle="modal" data-target="#myModal" title="Xem chi tiết"><i class="fa fa-eye-slash"></i></button>
+                                    <button class="btn btn-primary btn-icon" ui-sref="edit_employee({id:item.Id})" title="Chỉnh sửa"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-icon" ng-click="deleteItem(item.Id)" title="Xóa" ><i class="fa fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+
+                                <td colspan="7"><span class="pull-right">Trang: {{page+1}} - Tổng số bản ghi: {{totalCount}}</span></td>
+                            </tr>
+                        </tfoot>
+                    </table>    
+                    <div ng-if="loading" class="col-md-12 row">
+                        <div class="col-md-4"></div>
+                        <div class="col-xs-4">
+                            <img src="../../../Assets/admin/img/Spinner-1s-200px.gif" style="width:40%;height:70%;" /> <label class="label label-primary">Đang tải...</label>
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer pull-right">
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></pager-directive>
+        </div>
+    </div>
+</div>
+
+<!--modal-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="text-red">Nhân viên: {{employee.Name}}</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--<div class="row">
+                    <p class="col-md-3">Họ tên:</p>
+                    <p>{{employee.Name}}</p>
+                </div>-->
+                <div class=" row">
+                    <p class="col-md-3">olNgày sinh:</p>
+                    <p>{{employee.DateOfBirth|date:'dd-MM-yyyy'}}</p>
+                </div>
+                <div class="row">
+                    <p class="col-md-3">Giới tính:</p>
+                    <p>{{employee.Gender|genderFilter}}</p>
+                </div>
+                <div class=" row">
+                    <p class="col-md-3">Ảnh:</p>
+                    <img style="width:40%;height:60%;margin-bottom:5px;" src="{{employee.ImageName}}" />
+                </div>
+                <div class="row">
+                    <p class="col-md-3">Số điện thoại:</p>
+                    <p>{{employee.Phone}}</p>
+                </div>
+                <div class=" row">
+                    <p class="col-md-3">Địa chỉ:</p>
+                    <p>{{employee.Address}}</p>
+                </div>
+                <div class="row">
+                    <p class="col-md-3">Trạng thái:</p>
+                    <p>{{employee.Status|statusFilter}}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+

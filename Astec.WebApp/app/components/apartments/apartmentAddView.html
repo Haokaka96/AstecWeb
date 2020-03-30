@@ -1,0 +1,52 @@
+﻿
+<section class="card-header">
+    <h1> Danh sách căn hộ</h1>
+    <ul class="breadcrumb">
+        <li><a href="#!/home"> <i class="fa fa-home"></i> Trang chủ </a></li>
+        <li style="margin-left:5px;"><a ui-sref="apartments"> > Căn hộ</a></li>
+        <li class="active" style="margin-left:5px;"><a href="javascript:void(0)"> > Thêm mới</a></li>
+    </ul>
+</section>
+<div class="card" style="min-height: 484px;">
+    <div class="card-header"><h3>Thêm mới căn hộ</h3></div>
+    <div class="card-body">
+        <form class="forms-sample" novalidate name="frmAddApartment" role="form" ng-submit="addApartment()">
+            <div class="form-group row">
+                <label for="ApartmentName" class="col-sm-3 col-form-label">Tên căn hộ</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ApartmentName" required ng-maxlength="50" name="ApartmentName" placeholder="Nhập tên căn hộ" ng-model="apartment.ApartmentName">
+                    <span ng-show="frmAddApartment.ApartmentName.$invalid" class="has-error">Tên căn hộ không được để trống</span>
+                    <span ng-show="frmAddApartment.ApartmentName.$error.maxlength" class="has-error">Tên căn hộ chỉ được 50 ký tự</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Location" class="col-sm-3 col-form-label">Vị trí</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" id="Location" name="Location" placeholder="Nhập vị trí" ng-model="apartment.Location">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Description" class="col-sm-3 col-form-label">Mô tả</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Description" name="Description" placeholder="Nhập mô tả" ng-model="apartment.Description">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="exampleInputMobile" class="col-sm-3 col-form-label">Trạng thái</label>
+                <div class="col-sm-9">
+                    <label class="custom-control custom-radio">
+                        <input type="checkbox" class="custom-control-input" ng-checked="apartment.Status" ng-model="apartment.Status">
+                        <span class="custom-control-label">&nbsp;Kích hoạt</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label"></div>
+                <div class="col-sm-9">
+                    <button type="submit" ng-disabled="frmAddApartment.ApartmentName.$invalid" class="btn btn-primary mr-2"><i class="fa fa-save"></i> Lưu</button>
+                    <button class="btn btn-light" ui-sref="apartments"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
